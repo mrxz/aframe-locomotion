@@ -47,6 +47,7 @@ AFRAME.registerComponent('smooth-locomotion', {
             }
 
             if(direction.lengthSq() < 0.0001) {
+                this.data.target.emit('motion', { inputMagnitude: 0, source: this.el }, false)
                 return;
             }
 
@@ -66,6 +67,9 @@ AFRAME.registerComponent('smooth-locomotion', {
             newPosition.addScaledVector(direction, inputMagnitude * this.data.moveSpeed * dt / 1000);
 
             this.data.target.object3D.position.copy(newPosition);
+
+            // Emit event on the target, so others interested in the target's movement can react
+            this.data.target.emit('motion', { inputMagnitude, source: this.el }, false)
         }
     })(),
     remove: function() {
