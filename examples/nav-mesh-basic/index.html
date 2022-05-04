@@ -7,24 +7,12 @@
     </head>
     <body>
         <a-scene background="color: gray" nav-mesh-strategy="simple">
-            <!-- Simple plane  -->
-            <a-entity id="floor"
-                      rotation="-90 0 0"
-                      geometry="primitive: plane; width: 20; height: 20"
-                      material="src: url(../assets/grid.png); repeat: 20 20">
-            </a-entity>
-            <a-entity id="nav-mesh"
-                      rotation="-90 0 0"
-                      position="0 0.01 0"
-                      geometry="primitive: plane; width: 10; height: 10"
-                      material="color: #00ff00"
-                      nav-mesh>
-            </a-entity>
-            <a-sphere color="red" radius="0.2" scale="1 0.2 1"></a-sphere>
+            <!-- Environment  -->
+            <a-entity gltf-model="url(../assets/navmesh.glb)" nav-mesh></a-entity>
 
             <!-- Camera rig -->
             <a-entity id="rig" position="0 0 0">
-                <a-entity id="camera" camera position="0 1.6 0" wasd-controls look-controls></a-entity>
+                <a-entity id="camera" camera position="0 1.6 0" wasd-controls look-controls nav-mesh-constrained="offset: 0 1.6 0"></a-entity>
 
                 <!-- Hands -->
                 <a-entity

@@ -75,6 +75,8 @@ AFRAME.registerComponent('smooth-locomotion', {
             if(navMeshSystem && navMeshSystem.active) {
                 // NavMeshSystem needs the old and new world position of the reference.
                 this.data.reference.object3D.getWorldPosition(oldRefPosition);
+                // Project the position onto the 'floor' of the target
+                oldRefPosition.y -= oldRefPosition.y - oldPosition.y;
                 newRefPosition.copy(oldRefPosition).add(movement);
 
                 const approvedPosition = navMeshSystem.approveMovement(oldRefPosition, newRefPosition);

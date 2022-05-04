@@ -1,5 +1,7 @@
 AFRAME.registerComponent('nav-mesh-constrained', {
-    schema: {},
+    schema: {
+        offset: { type: 'vec3' }
+    },
     init: function() {
         this.navMeshSystem = this.el.sceneEl.systems['nav-mesh'];
     },
@@ -13,13 +15,16 @@ AFRAME.registerComponent('nav-mesh-constrained', {
             }
 
             this.el.object3D.getWorldPosition(newPosition);
+            newPosition.sub(this.data.offset);
 
             const approvedPosition = this.navMeshSystem.approveMovement(lastPosition, newPosition);
+            approvedPosition.add(this.data.offset);
 
             this.el.object3D.parent.worldToLocal(approvedPosition);
             this.el.object3D.position.copy(approvedPosition);
 
             this.el.object3D.getWorldPosition(lastPosition);
+            lastPosition.sub(this.data.offset);
         }
     })()
 })

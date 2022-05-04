@@ -10,14 +10,14 @@ export const simpleNavMeshStrategy = (function() {
         approveMovement: function(oldPosition, newPosition, navMeshes) {
             castPoint.copy(newPosition).add(castOffset);
             raycaster.set(castPoint, castDirection);
-            const intersections = raycaster.intersectObjects(navMeshes);
+            const intersections = raycaster.intersectObjects(navMeshes, true);
 
             if(intersections.length === 0) {
                 return oldPosition;
             }
 
             const intersectionPoint = intersections[0].point;
-            //newPosition.y = point.y;
+            newPosition.y = intersectionPoint.y;
             return newPosition;
         }
     }
