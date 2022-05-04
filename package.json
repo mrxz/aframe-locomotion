@@ -1,6 +1,6 @@
 {
   "name": "aframe-locomotion",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A-Frame component for smooth locomotion and snap turning",
   "module": "dist/aframe-locomoation.esm.min.js",
   "browser": "dist/aframe-locomotion.umd.min.js",

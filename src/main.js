@@ -1,2 +1,3 @@
-export * from './smooth-locomotion';
-export * from './snap-turn';
+export * from './smooth-locomotion.component';
+export * from './smooth-turn.component';
+export * from './snap-turn.component';

@@ -3,11 +3,12 @@ AFRAME.registerComponent('smooth-locomotion', {
         enabled:    { default: true },
         target:     { type: 'selector' },
         reference:  { type: 'selector' },
-        walkSpeed:  { default: 1.5 },
+        moveSpeed:  { default: 1.5 },
         // Toggles for the directions
         forward:    { default: true },
         backward:   { default: true },
         sideways:   { default: true },
+        inputMode:  { default: 'binary' },
     },
     init: function() {
         this.inputDirection = { x: 0, y: 0 };
@@ -37,18 +38,21 @@ AFRAME.registerComponent('smooth-locomotion', {
 
             direction.set(this.inputDirection.x, 0, this.inputDirection.y);
             if(!this.data.sideways) {
-                direction.z = 0;
+                direction.x = 0;
             }
-            if(direction.x < 0 && !this.data.backward) {
-                direction.x = 0;
+            if(direction.z < 0 && !this.data.backward) {
+                direction.z = 0;
             } else if(!this.data.forward) {
-                direction.x = 0;
+                direction.z = 0;
             }
 
             if(direction.lengthSq() < 0.0001) {
                 return;
             }
 
+            // Determine the magnitude of the input
+            const binaryInputMode = this.data.inputMode === 'binary';
+            const inputMagnitude = binaryInputMode ? 1.0 : Math.min(direction.length(), 1.0);
 
             // Direction is relative to the reference's rotation
             this.data.reference.object3D.getWorldQuaternion(referenceWorldRot);
@@ -59,7 +63,7 @@ AFRAME.registerComponent('smooth-locomotion', {
             direction.normalize();
 
             newPosition.copy(this.data.target.object3D.position);
-            newPosition.addScaledVector(direction, this.data.walkSpeed * dt / 1000);
+            newPosition.addScaledVector(direction, inputMagnitude * this.data.moveSpeed * dt / 1000);
 
             this.data.target.object3D.position.copy(newPosition);
         }
