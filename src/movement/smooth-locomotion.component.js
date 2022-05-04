@@ -30,6 +30,10 @@ AFRAME.registerComponent('smooth-locomotion', {
         const direction = new THREE.Vector3();
         const referenceWorldRot = new THREE.Quaternion();
         const newPosition = new THREE.Vector3();
+        const movement = new THREE.Vector3();
+
+        const oldRefPosition = new THREE.Vector3();
+        const newRefPosition = new THREE.Vector3();
 
         return function(t, dt) {
             if(!dt || !this.data.enabled) {
@@ -63,9 +67,23 @@ AFRAME.registerComponent('smooth-locomotion', {
             direction.y = 0;
             direction.normalize();
 
-            newPosition.copy(this.data.target.object3D.position);
-            newPosition.addScaledVector(direction, inputMagnitude * this.data.moveSpeed * dt / 1000);
+            const oldPosition = this.data.target.object3D.position;
+            movement.set(0, 0, 0).addScaledVector(direction, inputMagnitude * this.data.moveSpeed * dt / 1000);
 
+            // Check if the nav-mesh system allows the movement
+            const navMeshSystem = this.el.sceneEl.systems['nav-mesh'];
+            if(navMeshSystem && navMeshSystem.active) {
+                // NavMeshSystem needs the old and new world position of the reference.
+                this.data.reference.object3D.getWorldPosition(oldRefPosition);
+                newRefPosition.copy(oldRefPosition).add(movement);
+
+                const approvedPosition = navMeshSystem.approveMovement(oldRefPosition, newRefPosition);
+
+                // Compute adjusted movement
+                movement.copy(approvedPosition).sub(oldRefPosition);
+            }
+
+            newPosition.copy(oldPosition).add(movement);
             this.data.target.object3D.position.copy(newPosition);
 
             // Emit event on the target, so others interested in the target's movement can react
