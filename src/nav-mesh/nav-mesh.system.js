@@ -1,5 +1,3 @@
-import { simpleNavMeshStrategy } from "./strategy/simple-strategy";
-
 AFRAME.registerSystem('nav-mesh', {
     schema: {},
     active: false,
@@ -7,7 +5,7 @@ AFRAME.registerSystem('nav-mesh', {
     init: function() {
         this.navMeshEntities = [];
         this.navMeshes = [];
-        this.navMeshStrategy = simpleNavMeshStrategy;
+        this.navMeshStrategy = null;
     },
 
     registerNavMesh: function(el) {
@@ -25,6 +23,10 @@ AFRAME.registerSystem('nav-mesh', {
         this.navMeshes = this.navMeshEntities
             .map(el => el.getObject3D('mesh'))
             .filter(mesh => mesh);
+    },
+
+    switchStrategy: function(strategy) {
+        this.navMeshStrategy = strategy;
     },
 
     approveMovement: function(oldPosition, newPosition) {

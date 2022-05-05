@@ -1,16 +1,16 @@
+import { castRay } from "./utils";
+
 const STEP_SIZE = 0.5;
 
 export const simpleNavMeshStrategy = (function() {
     const castPoint = new THREE.Vector3();
     const castOffset = new THREE.Vector3(0, STEP_SIZE, 0);
     const castDirection = new THREE.Vector3(0, -1, 0);
-    const raycaster = new THREE.Raycaster();
 
     return {
         approveMovement: function(oldPosition, newPosition, navMeshes) {
             castPoint.copy(newPosition).add(castOffset);
-            raycaster.set(castPoint, castDirection);
-            const intersections = raycaster.intersectObjects(navMeshes, true);
+            const intersections = castRay(castPoint, castDirection, navMeshes);
 
             // No nav mesh below the new position, so disapprove
             if(intersections.length === 0) {
