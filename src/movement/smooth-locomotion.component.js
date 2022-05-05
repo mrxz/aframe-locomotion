@@ -92,10 +92,7 @@ AFRAME.registerComponent('smooth-locomotion', {
                 newRefPosition.copy(oldRefPosition).add(movement);
 
                 const candidateValidator = this.data.fallMode === 'prevent' ?
-                    (candidate, ground) => {
-                        console.log(candidate.y - ground.y);
-                        return candidate.y - ground.y < 0.5
-                    } :
+                    (candidate, ground) => candidate.y - ground.y < 0.5 :
                     (candidate, ground) => true;
                 const navResult = navMeshSystem.approveMovement(oldRefPosition, newRefPosition, candidateValidator);
                 const height = navResult.result ? navResult.position.y - navResult.ground.y : 100;

@@ -37,6 +37,7 @@ AFRAME.registerComponent('smooth-turn', {
         }
 
         const degrees = -input * this.data.turnSpeed * dt / 1000;
+        this.data.target.emit('rotation', { degrees, source: this.el });
         rotateAroundWorldUp(this.data.target.object3D, this.data.reference.object3D, degrees);
     },
     remove: function() {
