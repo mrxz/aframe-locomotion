@@ -1,3 +1,5 @@
+const VELOCITY_COMPONENTS = ['gravity'];
+
 AFRAME.registerComponent('smooth-locomotion', {
     schema: {
         enabled:    { default: true },
@@ -9,6 +11,7 @@ AFRAME.registerComponent('smooth-locomotion', {
         backward:   { default: true },
         sideways:   { default: true },
         inputMode:  { default: 'binary' },
+        fallMode:   { default: 'fall' }
     },
     init: function() {
         this.inputDirection = { x: 0, y: 0 };
@@ -31,6 +34,7 @@ AFRAME.registerComponent('smooth-locomotion', {
         const referenceWorldRot = new THREE.Quaternion();
         const newPosition = new THREE.Vector3();
         const movement = new THREE.Vector3();
+        const velocity = new THREE.Vector3();
 
         const oldRefPosition = new THREE.Vector3();
         const newRefPosition = new THREE.Vector3();
@@ -40,6 +44,7 @@ AFRAME.registerComponent('smooth-locomotion', {
                 return;
             }
 
+            // Handle input
             direction.set(this.inputDirection.x, 0, this.inputDirection.y);
             if(!this.data.sideways) {
                 direction.x = 0;
@@ -50,14 +55,17 @@ AFRAME.registerComponent('smooth-locomotion', {
                 direction.z = 0;
             }
 
-            if(direction.lengthSq() < 0.0001) {
-                this.data.target.emit('motion', { inputMagnitude: 0, source: this.el }, false)
-                return;
-            }
-
             // Determine the magnitude of the input
             const binaryInputMode = this.data.inputMode === 'binary';
-            const inputMagnitude = binaryInputMode ? 1.0 : Math.min(direction.length(), 1.0);
+            const inputMagnitude = binaryInputMode ? Math.ceil(direction.length()) : Math.min(direction.length(), 1.0);
+
+            // Handle velocity (falling, moving platforms, conveyors, etc...)
+            velocity.set(0, 0, 0);
+            for(let component of VELOCITY_COMPONENTS) {
+                if(this.data.target.hasAttribute(component)) {
+                    velocity.add(this.data.target.components[component].getVelocity());
+                }
+            }
 
             // Direction is relative to the reference's rotation
             this.data.reference.object3D.getWorldQuaternion(referenceWorldRot);
@@ -68,9 +76,12 @@ AFRAME.registerComponent('smooth-locomotion', {
             direction.normalize();
 
             const oldPosition = this.data.target.object3D.position;
-            movement.set(0, 0, 0).addScaledVector(direction, inputMagnitude * this.data.moveSpeed * dt / 1000);
+            movement.set(0, 0, 0)
+                .addScaledVector(velocity, dt / 1000)
+                .addScaledVector(direction, inputMagnitude * this.data.moveSpeed * dt / 1000);
 
             // Check if the nav-mesh system allows the movement
+            let inAir = true;
             const navMeshSystem = this.el.sceneEl.systems['nav-mesh'];
             if(navMeshSystem && navMeshSystem.active) {
                 // NavMeshSystem needs the old and new world position of the reference.
@@ -79,17 +90,36 @@ AFRAME.registerComponent('smooth-locomotion', {
                 oldRefPosition.y -= oldRefPosition.y - oldPosition.y;
                 newRefPosition.copy(oldRefPosition).add(movement);
 
-                const approvedPosition = navMeshSystem.approveMovement(oldRefPosition, newRefPosition);
+                const navResult = navMeshSystem.approveMovement(oldRefPosition, newRefPosition);
+                const height = navResult.result ? navResult.position.y - navResult.ground.y : 100;
+                if(this.data.fallMode === 'fall') {
+                    if(height < 0.5) {
+                        movement.copy(navResult.ground);
+                        inAir = false;
+                    } else {
+                        movement.copy(navResult.position);
+                    }
+                } else if(this.data.fallMode === 'snap') {
+                    inAir = false;
+                    movement.copy(navResult.ground);
+                } else if(this.data.fallMode === 'prevent') {
+                    inAir = false;
+                    if(height > 0.5) {
+                        movement.copy(oldRefPosition);
+                    } else {
+                        movement.copy(navResult.ground);
+                    }
+                }
 
                 // Compute adjusted movement
-                movement.copy(approvedPosition).sub(oldRefPosition);
+                movement.sub(oldRefPosition);
             }
 
             newPosition.copy(oldPosition).add(movement);
             this.data.target.object3D.position.copy(newPosition);
 
             // Emit event on the target, so others interested in the target's movement can react
-            this.data.target.emit('motion', { inputMagnitude, source: this.el }, false)
+            this.data.target.emit('motion', { inputMagnitude, inAir, source: this.el }, false)
         }
     })(),
     remove: function() {

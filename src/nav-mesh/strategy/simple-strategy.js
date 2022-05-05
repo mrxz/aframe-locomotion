@@ -12,13 +12,25 @@ export const simpleNavMeshStrategy = (function() {
             raycaster.set(castPoint, castDirection);
             const intersections = raycaster.intersectObjects(navMeshes, true);
 
+            // No nav mesh below the new position, so disapprove
             if(intersections.length === 0) {
-                return oldPosition;
+                return {
+                    result: false,
+                    position: oldPosition
+                };
             }
 
+            // Check if new position is a step up.
             const intersectionPoint = intersections[0].point;
-            newPosition.y = intersectionPoint.y;
-            return newPosition;
+            if(intersectionPoint.y > newPosition.y) {
+                newPosition.y = intersectionPoint.y;
+            }
+
+            return {
+                result: true,
+                position: newPosition,
+                ground: intersectionPoint
+            };
         }
     }
 })();

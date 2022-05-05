@@ -17,11 +17,12 @@ AFRAME.registerComponent('nav-mesh-constrained', {
             this.el.object3D.getWorldPosition(newPosition);
             newPosition.sub(this.data.offset);
 
-            const approvedPosition = this.navMeshSystem.approveMovement(lastPosition, newPosition);
-            approvedPosition.add(this.data.offset);
+            const navResult = this.navMeshSystem.approveMovement(lastPosition, newPosition);
+            const suggestedPosition = navResult.result ? navResult.ground : navResult.position;
+            suggestedPosition.add(this.data.offset);
 
-            this.el.object3D.parent.worldToLocal(approvedPosition);
-            this.el.object3D.position.copy(approvedPosition);
+            this.el.object3D.parent.worldToLocal(suggestedPosition);
+            this.el.object3D.position.copy(suggestedPosition);
 
             this.el.object3D.getWorldPosition(lastPosition);
             lastPosition.sub(this.data.offset);

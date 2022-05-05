@@ -1,3 +1,6 @@
+# 0.1.2
+ * Falling and fall-prevention (`smooth-locomotion` and `gravity`)
+
 # 0.1.1 (2022-05-04)
  * Smooth turning component `smooth-turn`
  * Input mode property for switching between analog and binary input handling (`smooth-turn` and `smooth-locomotion`)
