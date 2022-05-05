@@ -8,12 +8,12 @@ export const simpleNavMeshStrategy = (function() {
     const castDirection = new THREE.Vector3(0, -1, 0);
 
     return {
-        approveMovement: function(oldPosition, newPosition, navMeshes) {
+        approveMovement: function(oldPosition, newPosition, navMeshes, candidateValidator) {
             castPoint.copy(newPosition).add(castOffset);
             const intersections = castRay(castPoint, castDirection, navMeshes);
 
             // No nav mesh below the new position, so disapprove
-            if(intersections.length === 0) {
+            if(intersections.length === 0 || !candidateValidator(newPosition, intersections[0].point)) {
                 return {
                     result: false,
                     position: oldPosition

@@ -40,7 +40,7 @@ AFRAME.registerComponent('smooth-locomotion', {
         const newRefPosition = new THREE.Vector3();
 
         return function(t, dt) {
-            if(!dt || !this.data.enabled) {
+            if(!dt || !this.data.enabled || !this.el.sceneEl.is('vr-mode')) {
                 return;
             }
 
@@ -80,8 +80,9 @@ AFRAME.registerComponent('smooth-locomotion', {
                 .addScaledVector(velocity, dt / 1000)
                 .addScaledVector(direction, inputMagnitude * this.data.moveSpeed * dt / 1000);
 
+            let inAir = false;
+
             // Check if the nav-mesh system allows the movement
-            let inAir = true;
             const navMeshSystem = this.el.sceneEl.systems['nav-mesh'];
             if(navMeshSystem && navMeshSystem.active) {
                 // NavMeshSystem needs the old and new world position of the reference.
@@ -90,25 +91,26 @@ AFRAME.registerComponent('smooth-locomotion', {
                 oldRefPosition.y -= oldRefPosition.y - oldPosition.y;
                 newRefPosition.copy(oldRefPosition).add(movement);
 
-                const navResult = navMeshSystem.approveMovement(oldRefPosition, newRefPosition);
+                const candidateValidator = this.data.fallMode === 'prevent' ?
+                    (candidate, ground) => {
+                        console.log(candidate.y - ground.y);
+                        return candidate.y - ground.y < 0.5
+                    } :
+                    (candidate, ground) => true;
+                const navResult = navMeshSystem.approveMovement(oldRefPosition, newRefPosition, candidateValidator);
                 const height = navResult.result ? navResult.position.y - navResult.ground.y : 100;
+
                 if(this.data.fallMode === 'fall') {
                     if(height < 0.5) {
                         movement.copy(navResult.ground);
-                        inAir = false;
                     } else {
+                        inAir = true;
                         movement.copy(navResult.position);
                     }
                 } else if(this.data.fallMode === 'snap') {
-                    inAir = false;
                     movement.copy(navResult.ground);
                 } else if(this.data.fallMode === 'prevent') {
-                    inAir = false;
-                    if(height > 0.5) {
-                        movement.copy(oldRefPosition);
-                    } else {
-                        movement.copy(navResult.ground);
-                    }
+                    movement.copy(navResult.result ? navResult.ground : navResult.position);
                 }
 
                 // Compute adjusted movement

@@ -29,7 +29,7 @@ AFRAME.registerSystem('nav-mesh', {
         this.navMeshStrategy = strategy;
     },
 
-    approveMovement: function(oldPosition, newPosition) {
-        return this.navMeshStrategy.approveMovement(oldPosition, newPosition, this.navMeshes);
+    approveMovement: function(oldPosition, newPosition, candidateValidator) {
+        return this.navMeshStrategy.approveMovement(oldPosition, newPosition, this.navMeshes, candidateValidator || (() => true));
     }
 });

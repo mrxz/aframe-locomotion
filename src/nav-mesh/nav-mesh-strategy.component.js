@@ -1,12 +1,14 @@
 import { simpleNavMeshStrategy } from "./strategy/simple-strategy";
+import { scanNavMeshStrategy } from "./strategy/scan-strategy";
 
 const STRATEGIES = {
-    'simple': simpleNavMeshStrategy
+    'simple': simpleNavMeshStrategy,
+    'scan': scanNavMeshStrategy
 }
 
 AFRAME.registerComponent('nav-mesh-strategy', {
     schema: {
-        strategy: { default: 'simple' }
+        strategy: { default: 'scan' }
     },
     init: function() {
         this.navMeshSystem = this.el.sceneEl.systems['nav-mesh'];

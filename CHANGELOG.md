@@ -1,5 +1,6 @@
 # 0.1.2
  * Falling and fall-prevention (`smooth-locomotion` and `gravity`)
+ * NavMesh strategy that scans multiple alternatives (allows sliding across walls)
 
 # 0.1.1 (2022-05-04)
  * Smooth turning component `smooth-turn`
