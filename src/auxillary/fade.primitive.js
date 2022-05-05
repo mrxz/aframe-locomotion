@@ -26,3 +26,15 @@ AFRAME.registerPrimitive('al-snap-turn-fade', {
         'rotation-source': 'rotation-input.source',
     }
 });
+
+AFRAME.registerPrimitive('al-head-occlusion-fade', {
+    defaultComponents: {
+        material: { shader: 'fade', transparent: true },
+        geometry: { primitive: 'plane' },
+        'head-occlusion': { property: 'material.intensity' }
+    },
+    mappings: {
+        reference: 'head-occlusion.reference',
+        objects: 'head-occlusion.objects'
+    }
+});
