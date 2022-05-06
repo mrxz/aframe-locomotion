@@ -34,7 +34,6 @@ AFRAME.registerPrimitive('al-head-occlusion-fade', {
         'head-occlusion': { property: 'material.intensity' }
     },
     mappings: {
-        reference: 'head-occlusion.reference',
         objects: 'head-occlusion.objects'
     }
 });

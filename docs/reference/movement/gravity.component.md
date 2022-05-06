@@ -1,0 +1,20 @@
+# gravity
+This component is a 'velocity' component and can be used to influence motion based components like [`smooth-locomotion`](../smooth-locomotion.component). On its own the component won't do anything.
+
+## Properties
+| Property | Description | Default Value |
+|----------|-------------|---------------|
+| strength | The gravitational acceleration in m/s^2 | 0.81 |
+
+## Usage
+The `gravity` component should be applied to the target of motion. When using [`smooth-locomotion`](../smooth-locomotion.component) with the default camera rig, the rig element is the target and should have the `gravity` component on it:
+```HTML
+<a-entity id="rig" gravity>
+    <a-entity id="camera" camera position="0 1.6 0" wasd-controls look-controls></a-entity>
+
+    <a-entity vive-controls="hand: left"
+              oculus-touch-controls="hand: left"
+              smooth-locomotion="target: #rig; reference: #camera">
+    </a-entity>
+</a-entity>
+```
