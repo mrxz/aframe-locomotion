@@ -1,10 +1,9 @@
 AFRAME.registerComponent('head-occlusion', {
     schema: {
-        reference: { type: 'selector' },
         objects:   { type: 'selectorAll' },
         property:  { type: 'string' },
 
-        depth:     { type: 'number', default: 10, min: 1, max: 100 }
+        depth:     { type: 'number', default: 10, min: 1, max: 100 },
     },
     init: function() {
 
@@ -13,10 +12,9 @@ AFRAME.registerComponent('head-occlusion', {
         const raycaster = new THREE.Raycaster();
         const origin = new THREE.Vector3();
         const direction = new THREE.Vector3();
-        const referenceWorldRot = new THREE.Quaternion();
 
         return function(t, dt) {
-            if(!dt || !this.data.reference || !this.data.property) {
+            if(!dt || !this.data.property) {
                 return;
             }
 
@@ -27,8 +25,13 @@ AFRAME.registerComponent('head-occlusion', {
                 return;
             }
 
+            const camera = this.el.sceneEl.renderer.xr.getCamera();
+            if(camera.cameras.length === 0) {
+                return;
+            }
+
             // Cast ray from above down to the head
-            this.data.reference.object3D.getWorldPosition(origin);
+            origin.setFromMatrixPosition(camera.matrixWorld);
             direction.set(0, -1, 0);
 
             origin.addScaledVector(direction, -this.data.depth);
@@ -38,7 +41,7 @@ AFRAME.registerComponent('head-occlusion', {
             const intersectionsD = raycaster.intersectObjects(meshes, true);
 
             // Cast ray from in the head upwards
-            this.data.reference.object3D.getWorldPosition(origin);
+            origin.setFromMatrixPosition(camera.matrixWorld);
             direction.multiplyScalar(-1);
             raycaster.set(origin, direction);
 

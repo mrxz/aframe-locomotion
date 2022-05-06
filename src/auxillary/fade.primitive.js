@@ -18,7 +18,7 @@ AFRAME.registerShader('fade', {
 
 AFRAME.registerPrimitive('al-snap-turn-fade', {
     defaultComponents: {
-        material: { shader: 'fade', transparent: true },
+        material: { shader: 'fade', transparent: true, depthTest: false },
         geometry: { primitive: 'plane' },
         'rotation-input': { property: 'material.intensity' }
     },
@@ -29,7 +29,7 @@ AFRAME.registerPrimitive('al-snap-turn-fade', {
 
 AFRAME.registerPrimitive('al-head-occlusion-fade', {
     defaultComponents: {
-        material: { shader: 'fade', transparent: true },
+        material: { shader: 'fade', transparent: true, depthTest: false },
         geometry: { primitive: 'plane' },
         'head-occlusion': { property: 'material.intensity' }
     },
