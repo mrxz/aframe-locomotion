@@ -1,14 +1,14 @@
 {
   "name": "aframe-locomotion",
   "version": "0.1.1",
-  "description": "A-Frame component for smooth locomotion and snap turning",
-  "module": "dist/aframe-locomoation.esm.min.js",
+  "description": "A-Frame components for smooth locomotion and snap turning",
+  "module": "dist/aframe-locomotion.esm.min.js",
   "browser": "dist/aframe-locomotion.umd.min.js",
   "main": "dist/aframe-locomotion.esm.min.js",
   "author": "Noeri Huisman",
   "license": "MIT",
   "scripts": {
-    "dev": "live-server --port=4000 --no-browser",
+    "dev": "concurrently \"rollup -c -w\" \"live-server --port=4000 --no-browser ./examples --mount=/js:./dist\"",
     "build": "rollup -c",
     "watch": "rollup -c -w"
   },
@@ -31,6 +31,7 @@
   ],
   "devDependencies": {
     "@compodoc/live-server": "1.2.3",
+    "concurrently": "^7.1.0",
     "rollup": "^2.71.1",
     "rollup-plugin-terser": "^7.0.2"
   }
