@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    <link rel="canonical" href="https://aframe-locomotion.fern.solutions/docs/reference/movement/smooth-locomotion.component/">
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>smooth-locomotion - A-Frame Locomotion Docs</title>
+    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "smooth-locomotion", url: "#_top", children: [
+              {title: "Properties", url: "#properties" },
+              {title: "Events", url: "#events" },
+              {title: "Usage", url: "#usage" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    
+    
+      
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="../smooth-turn.component/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="../smooth-turn.component/" class="btn btn-xs btn-link">
+        smooth-turn
+      </a>
+    </div>
+    
+    <div class="wm-article-nav">
+      <a href="../gravity.component/" class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../gravity.component/" class="btn btn-xs btn-link">
+        gravity
+      </a>
+    </div>
+    
+  </div>
+
+    
+
+    <h1 id="smooth-locomotion">smooth-locomotion</h1>
+<p>Component for reading the input of a thumbstick and converting that into motion on a target entity. The rotation of the reference is used to determine the direction to move in. This can be used on a camera rig to move around the world using either head orientation or controller orientation.</p>
+<h2 id="properties">Properties</h2>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>enabled</td>
+<td>Whether the smooth locomotion is active or not</td>
+<td>true</td>
+</tr>
+<tr>
+<td>target</td>
+<td>Selector for the target of the motion</td>
+<td>none</td>
+</tr>
+<tr>
+<td>reference</td>
+<td>Selector for the reference to determine world position and rotation</td>
+<td>none</td>
+</tr>
+<tr>
+<td>moveSpeed</td>
+<td>The (max) speed for the target (m/s)</td>
+<td>1.5</td>
+</tr>
+<tr>
+<td>forward</td>
+<td>Whether or not forward movement should be applied</td>
+<td>true</td>
+</tr>
+<tr>
+<td>backward</td>
+<td>Whether or not backward movement should be applied</td>
+<td>true</td>
+</tr>
+<tr>
+<td>sideways</td>
+<td>Whether or not sideways movement should be applied</td>
+<td>true</td>
+</tr>
+<tr>
+<td>inputMode</td>
+<td>The mode for interpreting the input. With the <code>binary</code> mode even small inputs will result in maximum speed being applied. The <code>analog</code> mode will scale the applied speed between 0 and <code>moveSpeed</code> based on the input magnitude</td>
+<td>binary</td>
+</tr>
+<tr>
+<td>fallMode</td>
+<td>The mode for how falling should be handled in case the reference is moving off an edge. With <code>snap</code> the reference will always snap to the ground, instantly dropping down. With <code>prevent</code> the reference won't be moved over the edge. With <code>fall</code> the reference is moved over the edge, but not forced/snapped to the ground, allowing it to fall down. (Only applies when using the <a href="../../nav-mesh/nav-mesh-strategy.component/">nav-mesh system</a>)</td>
+<td>fall</td>
+</tr>
+</tbody>
+</table>
+<h2 id="events">Events</h2>
+<table>
+<thead>
+<tr>
+<th>Event Name</th>
+<th>Emitter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>motion</td>
+<td>target</td>
+<td>Target was moved through this component. No movement is also signalled through the <code>motion</code> event</td>
+</tr>
+</tbody>
+</table>
+<h2 id="usage">Usage</h2>
+<p>The <code>smooth-locomotion</code> component needs to be applied to an entity that will emit the <code>axismove</code> event, commenly one of the hands.
+Below is an example using a camera rig to enable smooth locomotion using the thumbstick on the left controller and using head orientation:</p>
+<pre><code class="language-HTML">&lt;a-entity id=&quot;rig&quot;&gt;
+    &lt;a-entity id=&quot;camera&quot; camera position=&quot;0 1.6 0&quot; wasd-controls look-controls&gt;&lt;/a-entity&gt;
+
+    &lt;a-entity id=&quot;leftHand&quot;
+              vive-controls=&quot;hand: left&quot;
+              oculus-touch-controls=&quot;hand: left&quot;
+              smooth-locomotion=&quot;target: #rig; reference: #camera&quot;&gt;
+    &lt;/a-entity&gt;
+&lt;/a-entity&gt;
+</code></pre>
+<p>To use controller orientation instead, change the reference to the controller, as such:</p>
+<pre><code class="language-HTML">&lt;a-entity id=&quot;leftHand&quot;
+            vive-controls=&quot;hand: left&quot;
+            oculus-touch-controls=&quot;hand: left&quot;
+            smooth-locomotion=&quot;target: #rig; reference: #leftHand&quot;&gt;
+&lt;/a-entity&gt;
+</code></pre>
+<blockquote>
+<p><strong>Note:</strong> The fall mode <code>fall</code> doesn't directly lead to the target falling down. A velocity source needs to be provided that causes the target to fall when in the air. See <a href="../gravity.component/"><code>gravity.component</code></a></p>
+</blockquote>
+
+  <br>
+    
+
+    
+    
+      
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="../smooth-turn.component/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="../smooth-turn.component/" class="btn btn-xs btn-link">
+        smooth-turn
+      </a>
+    </div>
+    
+    <div class="wm-article-nav">
+      <a href="../gravity.component/" class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../gravity.component/" class="btn btn-xs btn-link">
+        gravity
+      </a>
+    </div>
+    
+  </div>
+
+    <br>
+</div>
+
+<footer class="container-fluid wm-page-content">
+  <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="None">
+    
+    <link rel="canonical" href="https://aframe-locomotion.fern.solutions/docs/">
+    <link rel="shortcut icon" href="./img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>A-Frame Locomotion Docs</title>
+    <link href="./css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="./css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="./css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="./js/jquery-3.2.1.min.js"></script>
+    <script src="./js/bootstrap-3.3.7.min.js"></script>
+    <script src="./js/highlight.pack.js"></script>
+    
+      <script src="./js/elasticlunr.min.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '.';
+      var is_top_frame = (window === window.parent);
+        
+        var pageToc = [
+          {title: "A-Frame Locomotion", url: "#_top", children: [
+              {title: "Quick examples", url: "#quick-examples" },
+          ]},
+        ];
+
+    </script>
+    <script src="./js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+<nav class="navbar wm-page-top-frame">
+  <div class="container-fluid wm-top-container">
+    
+    <div class="wm-top-tool pull-right wm-vcenter">
+      <form class="dropdown wm-vcentered" id="wm-search-form" action="./search.html">
+        
+        <button id="wm-search-show" class="btn btn-sm btn-default" type="submit"
+          ><i class="fa fa-search" aria-hidden="true"></i></button>
+
+        <div class="input-group input-group-sm wm-top-search">
+          <input type="text" name="q" class="form-control" id="mkdocs-search-query" placeholder="Search" autocomplete="off">
+          <span class="input-group-btn" role="search">
+            
+            <button class="btn btn-default dropdown-toggle collapse" data-toggle="dropdown" type="button"><span class="caret"></span></button>
+            <ul id="mkdocs-search-results" class="dropdown-menu dropdown-menu-right"></ul>
+            <button id="wm-search-go" class="btn btn-default" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+          </span>
+        </div>
+      </form>
+    </div>
+
+    
+    <div class="wm-top-tool wm-vcenter pull-right wm-small-left">
+      <button id="wm-toc-button" type="button" class="btn btn-sm btn-default wm-vcentered"><i class="fa fa-th-list" aria-hidden="true"></i></button>
+    </div>
+
+    
+    
+
+    
+    <a href="" class="wm-top-brand wm-top-link wm-vcenter">
+      
+      <div class="wm-top-title">
+        A-Frame Locomotion Docs<br>
+        
+      </div>
+    </a>
+  </div>
+</nav>
+
+  <div id="main-content" class="wm-page-top-frame">
+    
+<nav class="wm-toc-pane">
+  
+  <ul class="wm-toctree">
+        <li class="wm-toc-li wm-toc-lev1 "><a href="" class="wm-article-link wm-toc-text">A-Frame Locomotion</a>
+</li>
+        <li class="wm-toc-li wm-toc-lev1 wm-toc-opener"><span class="wm-toc-text">Reference</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev2 wm-toc-opener"><span class="wm-toc-text">Auxillary</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev3 "><a href="reference/auxillary/al-head-occlusion-fade.primitive/" class="wm-article-link wm-toc-text">al-head-occlusion-fade</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="reference/auxillary/al-snap-turn-fade.primitive/" class="wm-article-link wm-toc-text">al-snap-turn-fade</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="reference/auxillary/al-vignette.primitive/" class="wm-article-link wm-toc-text">al-vignette</a>
+</li>
+  </ul>
+</li>
+
+      <li class="wm-toc-li wm-toc-lev2 wm-toc-opener"><span class="wm-toc-text">Movement</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev3 "><a href="reference/movement/gravity.component/" class="wm-article-link wm-toc-text">gravity</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="reference/movement/smooth-locomotion.component/" class="wm-article-link wm-toc-text">smooth-locomotion</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="reference/movement/smooth-turn.component/" class="wm-article-link wm-toc-text">smooth-turn</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="reference/movement/snap-turn.component/" class="wm-article-link wm-toc-text">snap-turn</a>
+</li>
+  </ul>
+</li>
+
+      <li class="wm-toc-li wm-toc-lev2 wm-toc-opener"><span class="wm-toc-text">Nav mesh</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev3 "><a href="reference/nav-mesh/nav-mesh-strategy.component/" class="wm-article-link wm-toc-text">nav-mesh-strategy</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="reference/nav-mesh/nav-mesh.component/" class="wm-article-link wm-toc-text">nav-mesh</a>
+</li>
+  </ul>
+</li>
+
+  </ul>
+</li>
+
+  </ul>
+</nav>
+
+    <div class="wm-content-pane">
+      <iframe class="wm-article" name="article"></iframe>
+    </div>
+  </div>
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    
+    
+      
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="reference/auxillary/al-head-occlusion-fade.primitive/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="reference/auxillary/al-head-occlusion-fade.primitive/" class="btn btn-xs btn-link">
+        al-head-occlusion-fade
+      </a>
+    </div>
+    
+  </div>
+
+    
+
+    <h1 id="a-frame-locomotion">A-Frame Locomotion</h1>
+<p>A-Frame Locomotion is a collection of components, systems and primitives for all forms of locomotion in VR. It aims to be simple, modular, flexible and 'just work'. You can freely pick out the things you need or combine them in new and creative ways.</p>
+<p>Here are some quick examples of the locomotion schemes you can achieve:</p>
+<h2 id="quick-examples">Quick examples</h2>
+<table>
+<thead>
+<tr>
+<th>Example</th>
+<th>Components</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Smooth locomotion with snap turning</td>
+<td><code>smooth-locomotion</code> and <code>snap-turn</code></td>
+</tr>
+<tr>
+<td>Snap turning with fade transitions</td>
+<td><code>snap-turn="delay: 0.1"</code> and <code>&lt;al-snap-turn-fade&gt;</code></td>
+</tr>
+<tr>
+<td>Smooth turning</td>
+<td><code>smooth-turning</code></td>
+</tr>
+<tr>
+<td>Vignette when moving</td>
+<td><code>al-vignette</code></td>
+</tr>
+<tr>
+<td>Smooth locomotion on a nav-mesh</td>
+<td><code>smooth-locomotion</code> with <code>nav-mesh-strategy</code> and <code>nav-mesh</code></td>
+</tr>
+<tr>
+<td>Smooth locomotion without falling of edges</td>
+<td><code>smooth-locomotion="fallMode: prevent"</code> with <code>nav-mesh-strategy</code> and <code>nav-mesh</code></td>
+</tr>
+<tr>
+<td>Remote controlling an actor</td>
+<td><code>smooth-locomotion="target: #actor; reference: #actor"</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Note:</strong> The above examples assume a <a href="https://aframe.io/docs/1.3.0/components/camera.html#examples">camera rig</a> to be used and omits corresponding property values for brevity. See reference documentation for the mentioned components or explore the full examples.</p>
+</blockquote>
+
+  <br>
+    
+
+    
+    
+      
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="reference/auxillary/al-head-occlusion-fade.primitive/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="reference/auxillary/al-head-occlusion-fade.primitive/" class="btn btn-xs btn-link">
+        al-head-occlusion-fade
+      </a>
+    </div>
+    
+  </div>
+
+    <br>
+</div>
+
+<footer class="container-fluid wm-page-content">
+  <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>
+<!--
+MkDocs version : 1.3.0
+Build Date UTC : 2022-05-17 06:35:38.713257+00:00
+-->

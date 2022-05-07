@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    <link rel="canonical" href="https://aframe-locomotion.fern.solutions/docs/reference/auxillary/al-head-occlusion-fade.primitive/">
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>al-head-occlusion-fade - A-Frame Locomotion Docs</title>
+    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "al-head-occlusion-fade", url: "#_top", children: [
+              {title: "Attributes", url: "#attributes" },
+              {title: "Usage", url: "#usage" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    
+    
+      
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="../al-snap-turn-fade.primitive/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="../al-snap-turn-fade.primitive/" class="btn btn-xs btn-link">
+        al-snap-turn-fade
+      </a>
+    </div>
+    
+    <div class="wm-article-nav">
+      <a href="../../.." class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../../.." class="btn btn-xs btn-link">
+        A-Frame Locomotion
+      </a>
+    </div>
+    
+  </div>
+
+    
+
+    <h1 id="al-head-occlusion-fade">al-head-occlusion-fade</h1>
+<p>Primitive that fades the view in/out when the head is placed inside an wall or object.</p>
+<h2 id="attributes">Attributes</h2>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>objects</td>
+<td>Selector for all the objects to check head occlusion for</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+<h2 id="usage">Usage</h2>
+<p>The <code>al-head-occlusion-fade</code> primitive should be a direct child of the camera. The following shows the primitive being used.</p>
+<pre><code class="language-HTML">&lt;a-box class=&quot;box&quot;&gt;&lt;/a-box&gt;
+
+&lt;a-entity id=&quot;rig&quot;&gt;
+    &lt;a-entity id=&quot;camera&quot; camera position=&quot;0 1.6 0&quot; wasd-controls look-controls&gt;
+        &lt;al-head-occlusion-fade objects=&quot;.box&quot;&gt;&lt;/al-head-occlusion-fade&gt;
+    &lt;/a-entity&gt;
+&lt;/a-entity&gt;
+</code></pre>
+<blockquote>
+<p><strong>Note:</strong> The head occlusion detection uses the XR camera, meaning it won't activate when vr-mode isn't active. If this is something you need/want, please open a new issue on GitHub and indicate your use case.</p>
+</blockquote>
+
+  <br>
+    
+
+    
+    
+      
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="../al-snap-turn-fade.primitive/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="../al-snap-turn-fade.primitive/" class="btn btn-xs btn-link">
+        al-snap-turn-fade
+      </a>
+    </div>
+    
+    <div class="wm-article-nav">
+      <a href="../../.." class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../../.." class="btn btn-xs btn-link">
+        A-Frame Locomotion
+      </a>
+    </div>
+    
+  </div>
+
+    <br>
+</div>
+
+<footer class="container-fluid wm-page-content">
+  <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

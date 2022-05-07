@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    <link rel="canonical" href="https://aframe-locomotion.fern.solutions/docs/reference/nav-mesh/nav-mesh-strategy.component/">
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>nav-mesh-strategy - A-Frame Locomotion Docs</title>
+    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "nav-mesh-strategy", url: "#_top", children: [
+              {title: "Properties", url: "#properties" },
+              {title: "Usage", url: "#usage" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    
+    
+      
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="../nav-mesh.component/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="../nav-mesh.component/" class="btn btn-xs btn-link">
+        nav-mesh
+      </a>
+    </div>
+    
+    <div class="wm-article-nav">
+      <a href="../../movement/snap-turn.component/" class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../../movement/snap-turn.component/" class="btn btn-xs btn-link">
+        snap-turn
+      </a>
+    </div>
+    
+  </div>
+
+    
+
+    <h1 id="nav-mesh-strategy">nav-mesh-strategy</h1>
+<p>Selects the nav mesh strategy that is used by all aframe-locomotion components. This component should be added to the scene if you want to make use of nav mesh based functionality. Once configured, nav meshes need to be marked using the <a href="../nav-mesh.component/"><code>nav-mesh</code></a> component.</p>
+<h2 id="properties">Properties</h2>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>strategy</td>
+<td>Either <code>simple</code> or <code>scan</code>. The <code>simple</code> strategy allows to check if movement is valid based on the nav-mesh in a binary fashion (movement is either valid or not). The <code>scan</code> strategy falls back to alternatives that are slightly to the side of the movement. This allows sliding across walls.</td>
+<td>scan</td>
+</tr>
+</tbody>
+</table>
+<h2 id="usage">Usage</h2>
+<p>Add the <code>nav-mesh-strategy</code> component to the scene</p>
+<pre><code class="language-HTML">&lt;a-scene nav-mesh-strategy&gt;
+    &lt;!-- entities with nav-mesh component --&gt;
+&lt;/a-scene&gt;
+</code></pre>
+<blockquote>
+<p><strong>Note:</strong> In many cases the navigation meshes should not be visible. The <code>nav-mesh</code> component doesn't handle this for you, so make sure to manually add <code>material="visible: false"</code> or hide the mesh in some other way.</p>
+</blockquote>
+
+  <br>
+    
+
+    
+    
+      
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="../nav-mesh.component/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="../nav-mesh.component/" class="btn btn-xs btn-link">
+        nav-mesh
+      </a>
+    </div>
+    
+    <div class="wm-article-nav">
+      <a href="../../movement/snap-turn.component/" class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../../movement/snap-turn.component/" class="btn btn-xs btn-link">
+        snap-turn
+      </a>
+    </div>
+    
+  </div>
+
+    <br>
+</div>
+
+<footer class="container-fluid wm-page-content">
+  <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>
