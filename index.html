@@ -1,51 +1,33 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
-        <script src="https://unpkg.com/aframe-locomotion@0.1.0/dist/aframe-locomotion.umd.min.js"></script>
-        <style>
-            #footer {
-                position: absolute;
-                display: block;
-                left: 0;
-                bottom: 0;
-                padding: 1em 1em 0.2em 1em;
-                background: rgba(0, 0, 0, .6);
-            }
-        </style>
     </head>
     <body>
-        <a-scene background="color: gray">
-            <!-- Simple plane  -->
-            <a-entity id="floor"
-                      rotation="-90 0 0"
-                      geometry="primitive: plane; width: 20; height: 20"
-                      material="src: url(grid.png); repeat: 20 20">
-            </a-entity>
-            <a-sphere color="red" radius="0.2" scale="1 0.2 1"></a-sphere>
-
-
-            <!-- Camera rig -->
-            <a-entity id="rig" position="0 0 0">
-                <a-entity id="camera" camera position="0 1.6 0" wasd-controls look-controls></a-entity>
-
-                <!-- Hands -->
-                <a-entity
-                    vive-controls="hand: left"
-                    oculus-touch-controls="hand: left"
-                    microsoft-motion-controls="hand: left"
-                    daydream-controls="left" gearvr-controls="left" smooth-locomotion="target: #rig; reference: #camera">
-                </a-entity>
-                <a-entity
-                    vive-controls="hand: right"
-                    microsoft-motion-controls="hand: right"
-                    oculus-touch-controls="hand: right"
-                    daydream-controls="right" gearvr-controls="right" snap-turn="target: #rig; reference: #camera">
-                </a-entity>
-
-            </a-entity>
-        </a-scene>
-
-        <a id="footer" href="https://fern.solutions"><img src="https://fern.solutions/images/full-logo-light.png" width="94px" height="60px" alt="Fern Solutions" /></a>
+        <h1>A-Frame Locomotion Examples</h1>
+        <section>
+            <h2>Basic</h2>
+            <p>Smooth locomotion with snap turning</p>
+            <a href="./basic">Check out example</a>
+        </section>
+        <section>
+            <h2>Vignette</h2>
+            <p>Improve comfort for smooth locomotion by showing a vignette when moving.</p>
+            <a href="./vignette">Check out example</a>
+        </section>
+        <section>
+            <h2>NavMesh basic</h2>
+            <p>Using a navmesh to constrain the movement of the user</p>
+            <a href="./nav-mesh-basic">Check out example</a>
+        </section>
+        <section>
+            <h2>Head Occlusion</h2>
+            <p>Detect when the user's head is occluded and fade to black</p>
+            <a href="./head-occlusion">Check out example</a>
+        </section>
+        <section>
+            <h2>RC</h2>
+            <p>Smooth locomotion with smooth turning applied to an different actor.</p>
+            <a href="./rc">Check out example</a>
+        </section>
     </body>
 </html>
