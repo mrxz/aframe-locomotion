@@ -1,7 +1,7 @@
 # A-Frame locomotion
-This project contains components for A-Frame that enable various forms of locomotion in VR. Currently only smooth locomotion and snap turning are implemented, but different modes are planned. Besides the actual modes of locomotion, there will be auxillary components that relate to locomotion (e.g. blinkers/vignette support)
+A collection of A-Frame components, systems and primitives that enable all sorts of locomotion in VR. It't built to be modular, flexible and easy to use. Currently supports smooth locomotion, snap turning and smooth turning. Besides the actual modes of locomotion, there are auxillary components to improve the locomotion experience like a vignette when moving, fading when snap turning and more.
 
-<a href="https://aframe-locomotion-example.fern.solutions/">Try the online demo
+<a href="https://aframe-locomotion.fern.solutions/examples">Try the online examples
 <img src="https://fern.solutions/images/projects/aframe-locomotion.png" alt="Aframe locomotion example"/>
 </a>
 
@@ -12,40 +12,41 @@ Blog post describing the implementation: [A-Frame Adventures 01 - Smooth locomot
 # Quick start
 To add `aframe-locomotion` to your A-Frame project, all you have to do is load the aframe-locomotion javascript:
 ```html
-<script src="https://unpkg.com/aframe-locomotion@0.1.1/dist/aframe-locomotion.umd.min.js"></script>
+<script src="https://unpkg.com/aframe-locomotion@0.2.0/dist/aframe-locomotion.umd.min.js"></script>
 ```
 
 This will automatically register the components `smooth-locomotion` and `snap-turn`. These need to be attached to the controllers as part of a camera rig, as follows:
 ```html
 <!-- Camera rig -->
-<a-entity id="rig" position="0 0 0">
-    <a-entity id="camera" camera position="0 1.6 0" wasd-controls look-controls></a-entity>
+<a-entity id="rig">
+    <a-camera id="camera"></a-camera>
 
     <!-- Hands -->
     <a-entity
-        vive-controls="hand: left"
-        oculus-touch-controls="hand: left"
+        hand-controls="hand: left"
         locomotion="target: #rig; reference: #camera">
     </a-entity>
     <a-entity
-        vive-controls="hand: right"
-        oculus-touch-controls="hand: right"
+        hand-controls="hand: right"
         snap-turn="target: #rig; reference: #camera">
     </a-entity>
 
 </a-entity>
 ```
 
-Both `smooth-locomotion` and `snap-turn` have more properties that can be configured, but isn't documented yet. Refer to the code to see which properties are available.
+Both `smooth-locomotion` and `snap-turn` have more properties that can be used to tweak the behaviour. Check the <a href="https://aframe-locomotion.fern.solutions/docs">Documentation</a> to learn more or explore the <a href="https://aframe-locomotion.fern.solutions/examples">examples</a>.
+
+# Features
+* Smooth locomotion
+* Snap turning (with optional fade transitions)
+* Smooth turning
+* Vignette when moving
+* Nav-mesh support
 
 # Planned features
-Basic smooth locomotion and snap turning have been implemented. However there are still many facets of locomotion that are missing. Since I primarily develop this library for my own needs, the below list of planned features can change at any point.
-
-* [x] Smooth locomotion
-* [x] Snap turning
-* [x] Smooth turning
-* [x] Blinkers/vignette
-* [x] Nav-mesh support
+* [ ] Velocity effectors (e.g. conveyor belts, moving platforms)
+* [ ] Smooth snap turning
+* [ ] Momentum preservation
 * [ ] Teleport
 * [ ] Flying
 * [ ] Head-collision prevention

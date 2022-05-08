@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
-        <meta title="A-Frame Locomotion | Example Remote Control">
+        <title>A-Frame Locomotion | Examples Remote Control</title>
         <link rel="stylesheet" type="text/css" href="../style.css" />
         <link rel="stylesheet" type="text/css" href="../prism.css" />
         <script src="../prism.js"></script>
@@ -33,7 +33,7 @@
 
         <!-- Hands -->
         <a-entity hand-controls="hand: left" smooth-locomotion="target: #car; reference: #car; sideways: false; inputMode: analog; moveSpeed: 4"></a-entity>
-        <a-entity hand-controls="hand: right" snap-turn="target: #car; reference: #car; turnSpeed: 180"></a-entity>
+        <a-entity hand-controls="hand: right" smooth-turn="target: #car; reference: #car; turnSpeed: 180"></a-entity>
     </a-entity>
 </a-scene></section>
             <section>
@@ -52,7 +52,7 @@
 
         &lt;!-- Hands --&gt;
         &lt;a-entity hand-controls&#x3D;&quot;hand: left&quot; smooth-locomotion&#x3D;&quot;target: #car; reference: #car; sideways: false; inputMode: analog; moveSpeed: 4&quot;&gt;&lt;/a-entity&gt;
-        &lt;a-entity hand-controls&#x3D;&quot;hand: right&quot; snap-turn&#x3D;&quot;target: #car; reference: #car; turnSpeed: 180&quot;&gt;&lt;/a-entity&gt;
+        &lt;a-entity hand-controls&#x3D;&quot;hand: right&quot; smooth-turn&#x3D;&quot;target: #car; reference: #car; turnSpeed: 180&quot;&gt;&lt;/a-entity&gt;
     &lt;/a-entity&gt;
 &lt;/a-scene&gt;</code></pre>
             </section>

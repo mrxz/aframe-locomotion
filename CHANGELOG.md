@@ -1,4 +1,4 @@
-# 0.1.2
+# 0.2.0 (2022-05-08)
  * Falling and fall-prevention (`smooth-locomotion` and `gravity`)
  * NavMesh strategy that scans multiple alternatives (allows sliding across walls)
  * Fading during snap-turns (`snap-turn` and `al-snap-turn-fade` primitive)
