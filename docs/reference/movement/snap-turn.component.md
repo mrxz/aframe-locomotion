@@ -34,4 +34,4 @@ Below is an example using a camera rig:
 </a-entity>
 ```
 
-In case a transition needs to be shown a delay can be configured. This delay is applied twice: before and after the actual snap rotation. This can be used to make a quick fade transition for each snap turn, see [`al-snap-turn-fade`](../../auxillary/al-snap-turn-fade.primitive)
+In case a transition needs to be shown a delay can be configured. This delay is applied twice: before and after the actual snap rotation. This can be used to make a quick fade transition for each snap turn, see [`al-snap-turn-fade`](../auxillary/al-snap-turn-fade.primitive.md)

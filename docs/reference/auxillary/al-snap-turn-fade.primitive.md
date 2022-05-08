@@ -1,10 +1,10 @@
 # al-snap-turn-fade
-Primitive that fades the view in/out when snap-turning. Requires the usage of [`snap-turn`](../../movement/snap-turn.component).
+Primitive that fades the view in/out when snap-turning. Requires the usage of [`snap-turn`](../movement/snap-turn.component.md).
 
 ## Attributes
 | Attribute | Description | Default Value |
 |-----------|-------------|---------------|
-| rotation-source | Selector for the entity that is rotated. This should be the target of [`snap-turn`](../../movement/snap-turn.component) | none |
+| rotation-source | Selector for the entity that is rotated. This should be the target of [`snap-turn`](../movement/snap-turn.component.md) | none |
 
 ## Usage
 The `al-snap-turn-fade` primitive should be a direct child of the camera. The following shows the primitive being used with snap-turning. Notice the configured delay, without it the snap is instant and no fade will take place:

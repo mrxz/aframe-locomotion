@@ -1,0 +1,61 @@
+body, html {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    background-color: #f8f8f8;
+    color: #444;
+}
+h1 {
+    margin: 0 15px;
+    font-size: 18px;
+    font-weight: normal;
+}
+
+a-scene {
+    margin: auto;
+}
+
+header {
+    background-color: #546e7a;
+    color: white;
+    box-shadow: 0 1.5px 3px rgba(0,0,0,.24), 0 3px 8px rgba(0,0,0,.05);
+    border: none;
+    border-radius: 0px;
+    margin-bottom: 0px;
+    height: 50px;
+    line-height: 50px;
+    vertical-align: middle;
+    z-index: 2;
+}
+
+main, footer {
+    padding: 15px;
+}
+
+pre {
+    border: 1px solid gray;
+}
+
+a {
+    text-decoration: none;
+}
+
+.nav {
+    position: relative;
+    text-align: center;
+}
+
+.nav h2 {
+    display: inline;
+}
+
+.nav .prev {
+    position: absolute;
+    left: 0px;
+}
+
+.nav .next {
+    position: absolute;
+    right: 0px;
+}

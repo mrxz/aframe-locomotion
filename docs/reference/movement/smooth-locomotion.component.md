@@ -12,7 +12,7 @@ Component for reading the input of a thumbstick and converting that into motion 
 | backward  | Whether or not backward movement should be applied | true |
 | sideways  | Whether or not sideways movement should be applied | true |
 | inputMode | The mode for interpreting the input. With the `binary` mode even small inputs will result in maximum speed being applied. The `analog` mode will scale the applied speed between 0 and `moveSpeed` based on the input magnitude | binary |
-| fallMode  | The mode for how falling should be handled in case the reference is moving off an edge. With `snap` the reference will always snap to the ground, instantly dropping down. With `prevent` the reference won't be moved over the edge. With `fall` the reference is moved over the edge, but not forced/snapped to the ground, allowing it to fall down. (Only applies when using the [nav-mesh system](../../nav-mesh/nav-mesh-strategy.component)) | fall |
+| fallMode  | The mode for how falling should be handled in case the reference is moving off an edge. With `snap` the reference will always snap to the ground, instantly dropping down. With `prevent` the reference won't be moved over the edge. With `fall` the reference is moved over the edge, but not forced/snapped to the ground, allowing it to fall down. (Only applies when using the [nav-mesh system](../nav-mesh/nav-mesh-strategy.component.md)) | fall |
 
 ## Events
 | Event Name | Emitter | Description |
@@ -43,4 +43,4 @@ To use controller orientation instead, change the reference to the controller, a
 </a-entity>
 ```
 
-> **Note:** The fall mode `fall` doesn't directly lead to the target falling down. A velocity source needs to be provided that causes the target to fall when in the air. See [`gravity.component`](../gravity.component)
+> **Note:** The fall mode `fall` doesn't directly lead to the target falling down. A velocity source needs to be provided that causes the target to fall when in the air. See [`gravity.component`](./gravity.component.md)

@@ -1,5 +1,5 @@
 # nav-mesh
-This component marks an object as a nav mesh, which can be used in motion. This component only has an effect when the nav-mesh system is activated by picking a [`nav-mesh-strategy`](../nav-mesh-strategy.component).
+This component marks an object as a nav mesh, which can be used in motion. This component only has an effect when the nav-mesh system is activated by picking a [`nav-mesh-strategy`](./nav-mesh-strategy.component.md).
 
 ## Properties
 | Property | Description | Default Value |

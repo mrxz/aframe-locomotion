@@ -4,7 +4,7 @@ Primitive that shows a vignette when moving.
 ## Attributes
 | Attribute | Description | Default Value |
 |-----------|-------------|---------------|
-| motion-source | Selector for the entity that is the target of a moving component (like [`smooth-locomotion`](../../movement/smooth-locomotion.component)). | none |
+| motion-source | Selector for the entity that is the target of a moving component (like [`smooth-locomotion`](../movement/smooth-locomotion.component.md)). | none |
 
 ## Usage
 The `al-vignette` primitive should be a direct child of the camera. The following shows the primitive being used with smooth locomotion.

@@ -1,37 +1,62 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta title="A-Frame Locomotion | Example Head Occlusion">
+        <link rel="stylesheet" type="text/css" href="../style.css" />
+        <link rel="stylesheet" type="text/css" href="../prism.css" />
+        <script src="../prism.js"></script>
         <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
         <script src="/js/aframe-locomotion.umd.min.js"></script>
-        <meta title="">
+        <style>a-scene{width:400px;height:400px;}</style>
     </head>
     <body>
-        <a-scene background="color: gray" nav-mesh-strategy>
-            <!-- Environment  -->
-            <a-entity gltf-model="url(../assets/navmesh.glb)" nav-mesh></a-entity>
+        <header>
+            <h1>A-Frame Locomotion | Head Occlusion</h1>
+        </header>
+        <main>
+            <div class="nav">
+                    <a class="prev" href="../rc">&lt; Remote Control</a>
+                <h2>Head Occlusion</h2>
+            </div>
+            <section><a-scene background="color: gray" embedded nav-mesh-strategy>
+    <!-- Environment -->
+    <a-entity gltf-model="url(../assets/navmesh.glb)" nav-mesh></a-entity>
 
-            <!-- Camera rig -->
-            <a-entity id="rig" position="0 0 0" gravity>
-                <a-entity id="camera" camera position="0 1.6 0" wasd-controls look-controls nav-mesh-constrained="offset: 0 1.6 0">
-                    <al-snap-turn-fade rotation-source="#rig"></al-snap-turn-fade>
-                    <al-head-occlusion-fade objects="[nav-mesh]"></al-head-occlusion-fade>
-                </a-entity>
+    <!-- Camera rig -->
+    <a-entity id="rig" gravity>
+        <a-camera id="camera" nav-mesh-constrained="offset: 0 1.6 0">
+            <al-head-occlusion-fade objects="[nav-mesh]"></al-head-occlusion-fade>
+        </a-camera>
 
-                <!-- Hands -->
-                <a-entity
-                    vive-controls="hand: left"
-                    oculus-touch-controls="hand: left"
-                    microsoft-motion-controls="hand: left"
-                    daydream-controls="left" gearvr-controls="left" smooth-locomotion="target: #rig; reference: #camera">
-                </a-entity>
-                <a-entity
-                    vive-controls="hand: right"
-                    microsoft-motion-controls="hand: right"
-                    oculus-touch-controls="hand: right"
-                    daydream-controls="right" gearvr-controls="right" snap-turn="target: #rig; reference: #camera; delay: 0.2">
-                </a-entity>
+        <!-- Hands -->
+        <a-entity hand-controls="hand: left" smooth-locomotion="target: #rig; reference: #camera"></a-entity>
+        <a-entity hand-controls="hand: right" snap-turn="target: #rig; reference: #camera"></a-entity>
+    </a-entity>
+</a-scene></section>
+            <section>
+                <h3>Source:</h3>
+                <pre><code class="language-html">&lt;a-scene background&#x3D;&quot;color: gray&quot; embedded nav-mesh-strategy&gt;
+    &lt;!-- Environment --&gt;
+    &lt;a-entity gltf-model&#x3D;&quot;url(../assets/navmesh.glb)&quot; nav-mesh&gt;&lt;/a-entity&gt;
 
-            </a-entity>
-        </a-scene>
+    &lt;!-- Camera rig --&gt;
+    &lt;a-entity id&#x3D;&quot;rig&quot; gravity&gt;
+        &lt;a-camera id&#x3D;&quot;camera&quot; nav-mesh-constrained&#x3D;&quot;offset: 0 1.6 0&quot;&gt;
+            &lt;al-head-occlusion-fade objects&#x3D;&quot;[nav-mesh]&quot;&gt;&lt;/al-head-occlusion-fade&gt;
+        &lt;/a-camera&gt;
+
+        &lt;!-- Hands --&gt;
+        &lt;a-entity hand-controls&#x3D;&quot;hand: left&quot; smooth-locomotion&#x3D;&quot;target: #rig; reference: #camera&quot;&gt;&lt;/a-entity&gt;
+        &lt;a-entity hand-controls&#x3D;&quot;hand: right&quot; snap-turn&#x3D;&quot;target: #rig; reference: #camera&quot;&gt;&lt;/a-entity&gt;
+    &lt;/a-entity&gt;
+&lt;/a-scene&gt;</code></pre>
+            </section>
+        </main>
+        <footer>
+            <h2>Links:</h2>
+            <ul>
+                <li><a href="/docs/reference/auxillary/al-head-occlusion-fade.component">&lt;al-head-occlusion-fade&gt; primitive</a></li>
+            </ul>
+        </footer>
     </body>
 </html>

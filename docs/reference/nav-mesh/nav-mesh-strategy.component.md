@@ -1,5 +1,5 @@
 # nav-mesh-strategy
-Selects the nav mesh strategy that is used by all aframe-locomotion components. This component should be added to the scene if you want to make use of nav mesh based functionality. Once configured, nav meshes need to be marked using the [`nav-mesh`](../nav-mesh.component) component.
+Selects the nav mesh strategy that is used by all aframe-locomotion components. This component should be added to the scene if you want to make use of nav mesh based functionality. Once configured, nav meshes need to be marked using the [`nav-mesh`](./nav-mesh.component.md) component.
 
 ## Properties
 | Property | Description | Default Value |
