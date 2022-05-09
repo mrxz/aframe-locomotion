@@ -1,13 +1,17 @@
 # A-Frame locomotion
 A collection of A-Frame components, systems and primitives that enable all sorts of locomotion in VR. It't built to be modular, flexible and easy to use. Currently supports smooth locomotion, snap turning and smooth turning. Besides the actual modes of locomotion, there are auxillary components to improve the locomotion experience like a vignette when moving, fading when snap turning and more.
 
-<a href="https://aframe-locomotion.fern.solutions/examples">Try the online examples
-<img src="https://fern.solutions/images/projects/aframe-locomotion.png" alt="Aframe locomotion example"/>
+<a href="https://aframe-locomotion.fern.solutions/examples">
+<img src="https://fern.solutions/images/projects/aframe-locomotion.png" alt="Aframe locomotion example"/><br/>
+Try the online examples
+</a>
+<a href="https://aframe-locomotion.fern.solutions/docs">
+Read the docs
 </a>
 
 Blog post describing the implementation: [A-Frame Adventures 01 - Smooth locomotion and snap turning](https://fern.solutions/dev-logs/aframe-adventures-01/)
 
-<a href='https://ko-fi.com/fernsolutions' target='_blank'><img height='35' style='border:0px;height:46px;' src='https://az743702.vo.msecnd.net/cdn/kofi3.png?v=0' border='0' alt='Buy Me a Coffee at ko-fi.com' />
+<a href='https://ko-fi.com/fernsolutions' target='_blank'><img height='35' style='border:0px;height:46px;' src='https://az743702.vo.msecnd.net/cdn/kofi3.png?v=0' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
 # Quick start
 To add `aframe-locomotion` to your A-Frame project, all you have to do is load the aframe-locomotion javascript:
