@@ -28,7 +28,7 @@ This will automatically register the components `smooth-locomotion` and `snap-tu
     <!-- Hands -->
     <a-entity
         hand-controls="hand: left"
-        locomotion="target: #rig; reference: #camera">
+        smooth-locomotion="target: #rig; reference: #camera">
     </a-entity>
     <a-entity
         hand-controls="hand: right"
