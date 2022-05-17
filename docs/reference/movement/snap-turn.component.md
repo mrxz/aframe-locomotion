@@ -7,7 +7,7 @@ Component for reading the input of a thumbstick and using that to effectively ro
 | enabled   | Whether the snap turn is active or not | true |
 | target    | Selector for the target to apply rotation and translation to | none |
 | reference | Selector for the reference to 'effectively' rotate | none |
-| turnSpeed | The rotation per snap (degrees) | 45 |
+| turnSize | The rotation per snap (degrees) | 45 |
 | activateThreshold | The amount the thumbstick needs to be pushed to activate a snap turn | 0.9 |
 | deactivateThreshold | The threshold the thumbstick needs to cross before a new activation may take place | 0.8 |
 | delay | Optional delay applied before and after the actual snap rotation takes place | 0 |
