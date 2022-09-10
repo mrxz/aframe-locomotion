@@ -1,4 +1,10 @@
 # A-Frame locomotion
+[![npm version](https://img.shields.io/npm/v/aframe-locomotion.svg?style=flat-square)](https://www.npmjs.com/package/aframe-locomotion)
+[![npm version](https://img.shields.io/npm/l/aframe-locomotion.svg?style=flat-square)](https://www.npmjs.com/package/aframe-locomotion)
+[![github](https://flat.badgen.net/badge/icon/github?icon=github&label)](https://github.com/mrxz/aframe-locomotion/)
+[![twitter](https://flat.badgen.net/twitter/follow/noerihuisman)](https://twitter.com/noerihuisman)
+[![ko-fi](https://img.shields.io/badge/ko--fi-buy%20me%20a%20coffee-ff5f5f?style=flat-square)](https://ko-fi.com/fernsolutions)
+
 A collection of A-Frame components, systems and primitives that enable all sorts of locomotion in VR. It't built to be modular, flexible and easy to use. Currently supports smooth locomotion, snap turning and smooth turning. Besides the actual modes of locomotion, there are auxillary components to improve the locomotion experience like a vignette when moving, fading when snap turning and more.
 
 <a href="https://aframe-locomotion.fern.solutions/examples">
