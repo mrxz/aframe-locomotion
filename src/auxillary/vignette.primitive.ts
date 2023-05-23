@@ -1,3 +1,4 @@
+import * as AFRAME from "aframe";
 
 AFRAME.registerShader('vignette', {
     schema: {

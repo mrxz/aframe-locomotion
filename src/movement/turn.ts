@@ -1,3 +1,5 @@
+import { THREE } from "aframe";
+
 export const rotateAroundWorldUp = (function() {
     const v3 = new THREE.Vector3();
     const m4A = new THREE.Matrix4();
@@ -10,7 +12,7 @@ export const rotateAroundWorldUp = (function() {
     const inverseReferenceMatrix = new THREE.Matrix4();
     const newTargetMatrix = new THREE.Matrix4();
 
-    return function(target, reference, degrees) {
+    return function(target: THREE.Object3D, reference: THREE.Object3D, degrees: number) {
         if(!degrees || !target || !reference) {
             return;
         }

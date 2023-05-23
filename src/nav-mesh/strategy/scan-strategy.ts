@@ -1,19 +1,21 @@
+import { NavMeshStrategy } from "./strategy.interface";
 import { castRay } from "./utils";
+import { THREE } from "aframe";
 
 const STEP_SIZE = 0.5;
 // Based on https://github.com/AdaRoseCannon/aframe-xr-boilerplate/blob/glitch/simple-navmesh-constraint.js
 const SCAN_PATTERN = [
-    [0,1],      // Default the next location
-    [0,0.5],    // Check that the path to that location was fine
-    [30,0.4],   // A little to the side shorter range
-    [-30,0.4],  // A little to the side shorter range
-    [60,0.2],   // Moderately to the side short range
-    [-60,0.2],  // Moderately to the side short range
-    [80,0.06],  // Perpendicular very short range
-    [-80,0.06], // Perpendicular very short range
+    [0, 1],      // Default the next location
+    [0, 0.5],    // Check that the path to that location was fine
+    [30, 0.4],   // A little to the side shorter range
+    [-30, 0.4],  // A little to the side shorter range
+    [60, 0.2],   // Moderately to the side short range
+    [-60, 0.2],  // Moderately to the side short range
+    [80, 0.06],  // Perpendicular very short range
+    [-80, 0.06], // Perpendicular very short range
 ];
 
-export const scanNavMeshStrategy = (function() {
+export const scanNavMeshStrategy: NavMeshStrategy = (function() {
     const castPoint = new THREE.Vector3();
     const castOffset = new THREE.Vector3(0, STEP_SIZE, 0);
     const castDirection = new THREE.Vector3(0, -1, 0);
@@ -23,7 +25,7 @@ export const scanNavMeshStrategy = (function() {
 
     return {
         approveMovement: function(oldPosition, newPosition, navMeshes, candidateValidator) {
-            const intersectionPointFor = (position) => {
+            const intersectionPointFor = (position: THREE.Vector3) => {
                 castPoint.addVectors(position, castOffset);
                 const intersections = castRay(castPoint, castDirection, navMeshes);
                 if(intersections.length !== 0) {

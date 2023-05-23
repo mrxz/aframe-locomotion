@@ -1,6 +1,16 @@
-const VELOCITY_COMPONENTS = ['gravity'];
+import { Components, THREE } from 'aframe';
+import { assertComponent, strict } from "aframe-typescript";
+import { CandidateValidator } from '../nav-mesh/strategy/strategy.interface';
 
-AFRAME.registerComponent('smooth-locomotion', {
+interface VelocityComponent {
+    getVelocity(): THREE.Vector3
+};
+const VELOCITY_COMPONENTS: Array<keyof Components> = ['gravity'];
+
+export const SmoothLocomotionComponent = AFRAME.registerComponent('smooth-locomotion', strict<{
+    inputDirection: { x: number, y: number },
+    axisMoveListener: (e: any) => void,
+}>().override<'tick'>().component({
     schema: {
         enabled:    { default: true },
         target:     { type: 'selector' },
@@ -39,7 +49,8 @@ AFRAME.registerComponent('smooth-locomotion', {
         const oldRefPosition = new THREE.Vector3();
         const newRefPosition = new THREE.Vector3();
 
-        return function(t, dt) {
+        return function(this: any, _t: number, dt: number) {
+            assertComponent<InstanceType<typeof SmoothLocomotionComponent>>(this);
             if(!dt || !this.data.enabled || !this.el.sceneEl.is('vr-mode')) {
                 return;
             }
@@ -62,20 +73,20 @@ AFRAME.registerComponent('smooth-locomotion', {
             // Handle velocity (falling, moving platforms, conveyors, etc...)
             velocity.set(0, 0, 0);
             for(let component of VELOCITY_COMPONENTS) {
-                if(this.data.target.hasAttribute(component)) {
-                    velocity.add(this.data.target.components[component].getVelocity());
+                if(this.data.target!.hasAttribute(component)) {
+                    velocity.add((<VelocityComponent>this.data.target!.components[component]!).getVelocity());
                 }
             }
 
             // Direction is relative to the reference's rotation
-            this.data.reference.object3D.getWorldQuaternion(referenceWorldRot);
+            this.data.reference!.object3D.getWorldQuaternion(referenceWorldRot);
             direction.applyQuaternion(referenceWorldRot);
 
             // Ignore vertical component
             direction.y = 0;
             direction.normalize();
 
-            const oldPosition = this.data.target.object3D.position;
+            const oldPosition = this.data.target!.object3D.position;
             movement.set(0, 0, 0)
                 .addScaledVector(velocity, dt / 1000)
                 .addScaledVector(direction, inputMagnitude * this.data.moveSpeed * dt / 1000);
@@ -86,26 +97,28 @@ AFRAME.registerComponent('smooth-locomotion', {
             const navMeshSystem = this.el.sceneEl.systems['nav-mesh'];
             if(navMeshSystem && navMeshSystem.active) {
                 // NavMeshSystem needs the old and new world position of the reference.
-                this.data.reference.object3D.getWorldPosition(oldRefPosition);
+                this.data.reference!.object3D.getWorldPosition(oldRefPosition);
                 // Project the position onto the 'floor' of the target
                 oldRefPosition.y -= oldRefPosition.y - oldPosition.y;
                 newRefPosition.copy(oldRefPosition).add(movement);
 
-                const candidateValidator = this.data.fallMode === 'prevent' ?
+                const candidateValidator: CandidateValidator = this.data.fallMode === 'prevent' ?
                     (candidate, ground) => candidate.y - ground.y < 0.5 :
-                    (candidate, ground) => true;
+                    (_candidate, _ground) => true;
                 const navResult = navMeshSystem.approveMovement(oldRefPosition, newRefPosition, candidateValidator);
                 const height = navResult.result ? navResult.position.y - navResult.ground.y : 100;
 
                 if(this.data.fallMode === 'fall') {
                     if(height < 0.5) {
-                        movement.copy(navResult.ground);
+                        movement.copy(navResult.ground!);
                     } else {
                         inAir = true;
                         movement.copy(navResult.position);
                     }
                 } else if(this.data.fallMode === 'snap') {
-                    movement.copy(navResult.ground);
+                    if(navResult.ground) {
+                        movement.copy(navResult.ground);
+                    }
                 } else if(this.data.fallMode === 'prevent') {
                     movement.copy(navResult.result ? navResult.ground : navResult.position);
                 }
@@ -115,13 +128,13 @@ AFRAME.registerComponent('smooth-locomotion', {
             }
 
             newPosition.copy(oldPosition).add(movement);
-            this.data.target.object3D.position.copy(newPosition);
+            this.data.target!.object3D.position.copy(newPosition);
 
             // Emit event on the target, so others interested in the target's movement can react
-            this.data.target.emit('motion', { inputMagnitude, inAir, source: this.el }, false)
+            this.data.target!.emit('motion', { inputMagnitude, inAir, source: this.el }, false)
         }
     })(),
     remove: function() {
         this.el.removeEventListener('axismove', this.axisMoveListener);
     }
-});
+}));

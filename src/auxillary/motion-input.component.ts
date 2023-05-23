@@ -1,4 +1,10 @@
-AFRAME.registerComponent('motion-input', {
+import * as AFRAME from "aframe";
+import { assertComponent, strict } from "aframe-typescript";
+
+export const MotionInputComponent = AFRAME.registerComponent('motion-input', strict<{
+    input: number,
+    motionEventHandler: (e: any) => void,
+}>().override<'tick'>().component({
     schema: {
         source:     { type: 'selector' },
         property:   { type: 'string' },
@@ -25,7 +31,8 @@ AFRAME.registerComponent('motion-input', {
     tick: (function() {
         let lastOutput = 0;
 
-        return function(t, dt) {
+        return function(this: any, _t: number, dt: number) {
+            assertComponent<InstanceType<typeof MotionInputComponent>>(this);
             if(!dt || !this.data.property) {
                 return;
             }
@@ -45,4 +52,4 @@ AFRAME.registerComponent('motion-input', {
             lastOutput = output;
         }
     })()
-});
+}));

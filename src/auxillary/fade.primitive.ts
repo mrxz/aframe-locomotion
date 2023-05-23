@@ -1,3 +1,5 @@
+import * as AFRAME from "aframe";
+
 AFRAME.registerShader('fade', {
     schema: {
         'color': { type: "vec3", is: 'uniform' },

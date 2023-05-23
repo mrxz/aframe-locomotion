@@ -1,4 +1,5 @@
 import { rotateAroundWorldUp } from './turn';
+import { strict } from 'aframe-typescript';
 
 const NONE = 0;
 const LEFT = 1;
@@ -7,8 +8,15 @@ const DONE = 3;
 // States in case of delay
 const PRE = 4;
 const POST = 5;
+type State = typeof NONE | typeof LEFT | typeof RIGHT | typeof DONE | typeof PRE | typeof POST;
 
-AFRAME.registerComponent('snap-turn', {
+export const SnapTurnComponent = AFRAME.registerComponent('snap-turn', strict<{
+    state: State,
+    action: State,
+    timer: number,
+    nextAction: State,
+    axisMoveListener: (e: any) => void
+}>().component({
     schema: {
         enabled:             { default: true },
         target:              { type: 'selector' },
@@ -49,7 +57,7 @@ AFRAME.registerComponent('snap-turn', {
         };
         this.el.addEventListener('axismove', this.axisMoveListener);
     },
-    tick: function(t, dt) {
+    tick: function(_t, dt) {
         if(!dt || !this.data.enabled || !this.data.reference || !this.data.target) {
             return;
         }
@@ -90,4 +98,4 @@ AFRAME.registerComponent('snap-turn', {
     remove: function() {
         this.el.removeEventListener('axismove', this.axisMoveListener);
     }
-});
+}));

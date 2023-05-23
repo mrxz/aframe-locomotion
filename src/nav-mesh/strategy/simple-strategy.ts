@@ -1,8 +1,10 @@
+import { NavMeshStrategy } from "./strategy.interface";
 import { castRay } from "./utils";
+import { THREE } from "aframe";
 
 const STEP_SIZE = 0.5;
 
-export const simpleNavMeshStrategy = (function() {
+export const simpleNavMeshStrategy: NavMeshStrategy = (function() {
     const castPoint = new THREE.Vector3();
     const castOffset = new THREE.Vector3(0, STEP_SIZE, 0);
     const castDirection = new THREE.Vector3(0, -1, 0);

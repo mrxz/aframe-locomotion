@@ -1,4 +1,11 @@
-AFRAME.registerComponent('rotation-input', {
+import * as AFRAME from "aframe";
+import { assertComponent, strict } from "aframe-typescript";
+
+export const RotationInputComponent = AFRAME.registerComponent('rotation-input', strict<{
+    input: number,
+    preRotationEventHandler: (e: any) => void,
+    postRotationEventHandler: (e: any) => void,
+}>().override<'tick'>().component({
     schema: {
         source:     { type: 'selector' },
         property:   { type: 'string' },
@@ -31,7 +38,8 @@ AFRAME.registerComponent('rotation-input', {
     tick: (function() {
         let lastOutput = 0;
 
-        return function(t, dt) {
+        return function(this: any, _t: number, dt: number) {
+            assertComponent<InstanceType<typeof RotationInputComponent>>(this);
             if(!dt || !this.data.property) {
                 return;
             }
@@ -51,4 +59,4 @@ AFRAME.registerComponent('rotation-input', {
             lastOutput = output;
         }
     })()
-});
+}));

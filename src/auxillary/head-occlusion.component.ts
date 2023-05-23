@@ -1,19 +1,21 @@
-AFRAME.registerComponent('head-occlusion', {
+import { THREE } from 'aframe';
+import { assertComponent, strict } from 'aframe-typescript';
+import { WebXRCamera } from 'three';
+
+export const HeadOcclusionComponent = AFRAME.registerComponent('head-occlusion', strict().override<'tick'>().component({
     schema: {
         objects:   { type: 'selectorAll' },
         property:  { type: 'string' },
 
         depth:     { type: 'number', default: 10, min: 1, max: 100 },
     },
-    init: function() {
-
-    },
     tick: (function() {
         const raycaster = new THREE.Raycaster();
         const origin = new THREE.Vector3();
         const direction = new THREE.Vector3();
 
-        return function(t, dt) {
+        return function(this: any, _t: number, dt: number) {
+            assertComponent<InstanceType<typeof HeadOcclusionComponent>>(this);
             if(!dt || !this.data.property) {
                 return;
             }
@@ -26,7 +28,7 @@ AFRAME.registerComponent('head-occlusion', {
             }
 
             const camera = this.el.sceneEl.renderer.xr.getCamera();
-            if(camera.cameras.length === 0) {
+            if((camera.cameras as Array<WebXRCamera>).length === 0) {
                 return;
             }
 
@@ -51,4 +53,4 @@ AFRAME.registerComponent('head-occlusion', {
             AFRAME.utils.entity.setComponentProperty(this.el, this.data.property, value);
         };
     })()
-});
+}));
