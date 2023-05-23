@@ -5,6 +5,7 @@ const typedocJson = JSON.parse(fs.readFileSync('../temp/docs.json'));
 const types = {
     components: {},
     systems: {},
+    primitives: {},
 };
 
 const deriveTypeFromDefault = (defaultValue) => {
@@ -19,37 +20,54 @@ const deriveTypeFromDefault = (defaultValue) => {
     }
     return null;
 }
+
+function parseDeclaration(declaration) {
+    const result = {
+        name: declaration.name,
+        sources: declaration.sources,
+        comment: declaration.comment,
+        schema: []
+    }
+
+    const schemaTypeArgument = declaration.type.typeArguments[1];
+    if(schemaTypeArgument.declaration.children) {
+        for(const schemaProperty of schemaTypeArgument.declaration.children) {
+            const schemaPropertyDetails = Object.fromEntries(schemaProperty.type.declaration.children.map(x => [x.name, x]));
+            const property = {
+                name: schemaProperty.name,
+                comment: schemaProperty.comment,
+                type: schemaPropertyDetails['type']?.type.value,
+                default: schemaPropertyDetails['default']?.type.value,
+            };
+            if(!property.type) {
+                property.type = deriveTypeFromDefault(property.default);
+            }
+            result.schema.push(property);
+        }
+    }
+
+    return result;
+}
 for(const declaration of typedocJson.children) {
     const name = declaration.type.target.qualifiedName;
-    if(name === "ComponentConstructor") {
-        const component = {
-            name: declaration.name,
-            sources: declaration.sources,
-            comment: declaration.comment,
-            schema: []
-        }
-
-        const schemaTypeArgument = declaration.type.typeArguments[1];
-        if(schemaTypeArgument.declaration.children) {
-            for(const schemaProperty of schemaTypeArgument.declaration.children) {
-                const schemaPropertyDetails = Object.fromEntries(schemaProperty.type.declaration.children.map(x => [x.name, x]));
-                const property = {
-                    name: schemaProperty.name,
-                    comment: schemaProperty.comment,
-                    type: schemaPropertyDetails['type']?.type.value,
-                    default: schemaPropertyDetails['default']?.type.value,
-                };
-                if(!property.type) {
-                    property.type = deriveTypeFromDefault(property.default);
-                }
-                component.schema.push(property);
-            }
-        }
-
+    if(name === "ComponentConstructor" ) {
+        const component = parseDeclaration(declaration);
         if(component.name in types.components) {
             console.warn('Duplicate component', component.name);
         }
         types.components[component.name] = component;
+    } else if(name === "SystemConstructor") {
+        const system = parseDeclaration(declaration);
+        if(system.name in types.systems) {
+            console.warn('Duplicate system', system.name);
+        }
+        types.systems[system.name] = system;
+    } else if(name === "PrimitiveConstructor") {
+        const primitive = parseDeclaration(declaration);
+        if(primitive.name in types.primitives) {
+            console.warn('Duplicate primitive', primitive.name);
+        }
+        types.primitives[primitive.name] = primitive;
     }
 }
 
@@ -60,6 +78,8 @@ const nameFromTypeName = (typeName) => {
     if(result.endsWith('-component')) {
         result = result.substring(0, result.lastIndexOf('-'));
     } else if(result.endsWith('-system')) {
+        result = result.substring(0, result.lastIndexOf('-'));
+    } else if(result.endsWith('-primitive')) {
         result = result.substring(0, result.lastIndexOf('-'));
     }
     return result;
@@ -72,6 +92,9 @@ const fileNameForTypeName = (typeName) => {
     } else if(result.endsWith('-system')) {
         result = result.substring(0, result.lastIndexOf('-'));
         result += '.system';
+    } else if(result.endsWith('-primitive')) {
+        result = result.substring(0, result.lastIndexOf('-'));
+        result += '.primitive';
     }
     return result + '.md';
 }
@@ -123,10 +146,26 @@ handlebars.registerHelper('fromComment', function(input) {
     return fromCommentImpl(input, false);
 });
 
-const compiled = handlebars.compile(fs.readFileSync('../scripts/docs-template.md').toString());
+const compiled = {
+    component: handlebars.compile(fs.readFileSync('../scripts/component-template.md').toString()),
+    system: handlebars.compile(fs.readFileSync('../scripts/system-template.md').toString()),
+    primitive: handlebars.compile(fs.readFileSync('../scripts/primitive-template.md').toString()),
+};
 for(const component of Object.values(types.components)) {
     const path = fileNameForTypeName(component.name);
 
-    const contents = compiled(component);
+    const contents = compiled.component(component);
+    fs.writeFileSync('../temp/output/' + path, contents);
+}
+for(const system of Object.values(types.systems)) {
+    const path = fileNameForTypeName(system.name);
+
+    const contents = compiled.system(system);
+    fs.writeFileSync('../temp/output/' + path, contents);
+}
+for(const primitive of Object.values(types.primitives)) {
+    const path = fileNameForTypeName(primitive.name);
+
+    const contents = compiled.primitive(primitive);
     fs.writeFileSync('../temp/output/' + path, contents);
 }

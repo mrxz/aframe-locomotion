@@ -1,4 +1,4 @@
-import { HeadOcclusionComponent, MotionInputComponent, NavMeshConstrainedComponent, RotationInputComponent } from './auxillary/index';
+import { AlHeadOcclusionFadePrimitive, AlSnapTurnFadePrimitive, AlVignettePrimitive, HeadOcclusionComponent, MotionInputComponent, NavMeshConstrainedComponent, RotationInputComponent } from './auxillary/index';
 import { GravityComponent, SmoothLocomotionComponent, SmoothTurnComponent, SnapTurnComponent } from './movement/index';
 import { NavMeshComponent, NavMeshStrategyComponent, NavMeshSystem } from './nav-mesh/index';
 
@@ -7,6 +7,10 @@ export * from './movement/index';
 export * from './nav-mesh/index';
 
 declare module "aframe" {
+    export interface Systems {
+        "nav-mesh": InstanceType<typeof NavMeshSystem>
+    }
+
     export interface Components {
         "head-occlusion": InstanceType<typeof HeadOcclusionComponent>,
         "motion-input": InstanceType<typeof MotionInputComponent>,
@@ -20,7 +24,9 @@ declare module "aframe" {
         "nav-mesh": InstanceType<typeof NavMeshComponent>,
     }
 
-    export interface Systems {
-        "nav-mesh": InstanceType<typeof NavMeshSystem>
+    export interface Primitives {
+        "al-head-occlusion-fade": typeof AlHeadOcclusionFadePrimitive,
+        "al-snap-turn-fade": typeof AlSnapTurnFadePrimitive,
+        "al-vignette": typeof AlVignettePrimitive,
     }
 }
