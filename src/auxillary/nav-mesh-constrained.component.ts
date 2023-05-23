@@ -7,6 +7,9 @@ export const NavMeshConstrainedComponent = AFRAME.registerComponent('nav-mesh-co
     navMeshSystem: Systems['nav-mesh']
 }>().override<'tick'>().component({
     schema: {
+        /**
+         * Offset for the raycasting to take place, commonly used to offset the raycast upwards.
+         */
         offset:   { type: 'vec3' },
         fallMode: { default: 'snap' }
     },

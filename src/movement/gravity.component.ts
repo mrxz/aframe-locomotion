@@ -1,8 +1,31 @@
 import * as AFRAME from "aframe";
 import { THREE } from "aframe";
 
+/**
+ * This component is a 'velocity' component and can be used to influence
+ * motion based components like {@link SmoothLocomotionComponent}.
+ * On its own the component won't do anything.
+ *
+ * @remarks
+ * The `gravity` component should be applied to the target of motion.
+ * When using {@link SmoothLocomotionComponent} with the default camera rig,
+ * the rig element is the target and should have the `gravity` component on it.
+ *
+ * @example
+ * ```HTML
+ * <a-entity id="rig" gravity>
+ *   <a-entity id="camera" camera position="0 1.6 0" wasd-controls look-controls></a-entity>
+ *
+ *   <a-entity vive-controls="hand: left"
+ *             oculus-touch-controls="hand: left"
+ *             smooth-locomotion="target: #rig; reference: #camera">
+ *   </a-entity>
+ * </a-entity>
+ * ```
+ */
 export const GravityComponent = AFRAME.registerComponent('gravity', {
     schema: {
+        /** The gravitational acceleration in m/s^2 */
         strength: { default: 9.81 }
     },
     inAir: false,
