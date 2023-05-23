@@ -1,5 +1,5 @@
 import * as AFRAME from "aframe";
-import { THREE } from "aframe";
+import { EntityEvents, THREE } from "aframe";
 
 /**
  * This component is a 'velocity' component and can be used to influence
@@ -31,7 +31,7 @@ export const GravityComponent = AFRAME.registerComponent('gravity', {
     inAir: false,
     velocity: new THREE.Vector3(),
     init: function() {
-        this.motionEventHandler = (event: any) => {
+        this.motionEventHandler = (event: EntityEvents['motion']) => {
             this.inAir = event.detail.inAir;
             if(!this.inAir) {
                 this.velocity.set(0, 0, 0);

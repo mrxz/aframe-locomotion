@@ -1,3 +1,4 @@
+import { ListenerFor } from 'aframe';
 import { rotateAroundWorldUp } from './turn';
 import { strict } from 'aframe-typescript';
 
@@ -41,7 +42,7 @@ export const SnapTurnComponent = AFRAME.registerComponent('snap-turn', strict<{
     action: State,
     timer: number,
     nextAction: State,
-    axisMoveListener: (e: any) => void
+    axisMoveListener: ListenerFor<'axismove'>
 }>().component({
     schema: {
         /** Whether or not the snapturning is enabled */

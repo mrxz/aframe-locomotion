@@ -1,4 +1,4 @@
-import { Components, THREE } from 'aframe';
+import { Components, ListenerFor, THREE } from 'aframe';
 import { assertComponent, strict } from "aframe-typescript";
 import { CandidateValidator } from '../nav-mesh/strategy/strategy.interface';
 
@@ -39,7 +39,7 @@ const VELOCITY_COMPONENTS: Array<keyof Components> = ['gravity'];
  */
 export const SmoothLocomotionComponent = AFRAME.registerComponent('smooth-locomotion', strict<{
     inputDirection: { x: number, y: number },
-    axisMoveListener: (e: any) => void,
+    axisMoveListener: ListenerFor<'axismove'>,
 }>().override<'tick'>().component({
     schema: {
         /** Whether the smooth locomotion is active or not */

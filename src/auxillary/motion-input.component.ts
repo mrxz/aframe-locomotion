@@ -1,9 +1,10 @@
 import * as AFRAME from "aframe";
+import { ListenerFor } from "aframe";
 import { assertComponent, strict } from "aframe-typescript";
 
 export const MotionInputComponent = AFRAME.registerComponent('motion-input', strict<{
     input: number,
-    motionEventHandler: (e: any) => void,
+    motionEventHandler: ListenerFor<'motion'>,
 }>().override<'tick'>().component({
     schema: {
         source:     { type: 'selector' },

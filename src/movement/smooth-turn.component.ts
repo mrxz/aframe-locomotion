@@ -1,4 +1,4 @@
-import { StrictComponent } from 'aframe';
+import { ListenerFor, StrictComponent } from 'aframe';
 import { rotateAroundWorldUp } from './turn';
 
 const EPSILON = 0.00001;
@@ -42,7 +42,7 @@ export const SmoothTurnComponent = AFRAME.registerComponent('smooth-turn', {
     },
     init: function() {
         this.input = 0;
-        this.axisMoveListener = (e: any) => {
+        this.axisMoveListener = (e) => {
             const axis = e.detail.axis;
             this.input = axis.length > 2 ? axis[2] : axis[0];
         };
@@ -73,4 +73,4 @@ export const SmoothTurnComponent = AFRAME.registerComponent('smooth-turn', {
     remove: function() {
         this.el.removeEventListener('axismove', this.axisMoveListener);
     }
-}) satisfies StrictComponent<{input: number, axisMoveListener: (e: any) => void}>;
+}) satisfies StrictComponent<{input: number, axisMoveListener: ListenerFor<'axismove'> }>;

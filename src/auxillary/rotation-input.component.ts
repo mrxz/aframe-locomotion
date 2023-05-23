@@ -1,10 +1,11 @@
 import * as AFRAME from "aframe";
+import { ListenerFor } from "aframe";
 import { assertComponent, strict } from "aframe-typescript";
 
 export const RotationInputComponent = AFRAME.registerComponent('rotation-input', strict<{
     input: number,
-    preRotationEventHandler: (e: any) => void,
-    postRotationEventHandler: (e: any) => void,
+    preRotationEventHandler: ListenerFor<'prerotation'>,
+    postRotationEventHandler: ListenerFor<'postrotation'>,
 }>().override<'tick'>().component({
     schema: {
         source:     { type: 'selector' },
