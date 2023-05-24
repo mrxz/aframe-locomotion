@@ -1,3 +1,4 @@
+import * as AFRAME from 'aframe';
 import { simpleNavMeshStrategy } from "./strategy/simple-strategy";
 import { scanNavMeshStrategy } from "./strategy/scan-strategy";
 import { NavMeshStrategy } from "./strategy/strategy.interface";

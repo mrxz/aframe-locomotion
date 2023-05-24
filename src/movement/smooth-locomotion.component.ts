@@ -1,3 +1,4 @@
+import * as AFRAME from 'aframe';
 import { Components, ListenerFor, THREE } from 'aframe';
 import { assertComponent, strict } from "aframe-typescript";
 import { CandidateValidator } from '../nav-mesh/strategy/strategy.interface';

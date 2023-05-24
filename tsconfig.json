@@ -15,9 +15,11 @@
       "noImplicitReturns": true,
       "noImplicitAny": true,
       "skipLibCheck": true,
-      "typeRoots": ["types"],
-      "baseUrl": "types",
       "declaration": false,
+      "rootDir": "src",
+      "paths": {
+        "aframe": ["./types/aframe/"]
+      }
     },
     "include": ["src"],
     "exclude": ["node_modules", "**/dist/*", "libs"]

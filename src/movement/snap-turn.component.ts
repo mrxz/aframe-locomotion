@@ -1,3 +1,4 @@
+import * as AFRAME from 'aframe';
 import { ListenerFor } from 'aframe';
 import { rotateAroundWorldUp } from './turn';
 import { strict } from 'aframe-typescript';

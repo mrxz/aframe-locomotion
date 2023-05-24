@@ -1,3 +1,4 @@
+import * as AFRAME from 'aframe';
 import type { Entity, StrictSystem } from "aframe";
 import { NavMeshStrategy } from "./strategy/strategy.interface";
 

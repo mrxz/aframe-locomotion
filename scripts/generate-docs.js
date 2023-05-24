@@ -1,11 +1,12 @@
 const fs = require('fs');
+const path = require('path');
 const handlebars = require('handlebars');
 
 const typedocJson = JSON.parse(fs.readFileSync('../temp/docs.json'));
 const types = {
-    components: {},
-    systems: {},
-    primitives: {},
+    component: {},
+    system: {},
+    primitive: {},
 };
 const lookup = {};
 
@@ -35,32 +36,27 @@ const nameFromTypeName = (typeName) => {
     }
     return result;
 }
-const fileNameForTypeName = (typeName) => {
-    let result = kebabize(typeName);
-    if(result.endsWith('-component')) {
-        result = result.substring(0, result.lastIndexOf('-'));
-        result += '.component';
-    } else if(result.endsWith('-system')) {
-        result = result.substring(0, result.lastIndexOf('-'));
-        result += '.system';
-    } else if(result.endsWith('-primitive')) {
-        result = result.substring(0, result.lastIndexOf('-'));
-        result += '.primitive';
-    }
-    return result + '.md';
+const fileNameForTypeName = (declaration) => {
+    // Note: derive path from source path while skipping (hard-coded) rootDir
+    //       ideally a category annotation can be used to place it elsewhere
+    let path = declaration.sources.length ? declaration.sources[0].fileName : '';
+    path = path.substring(path.indexOf('/')+1, path.lastIndexOf('/'));
+    return `${path}/${declaration.registeredName}.${declaration.kind}.md`;
 }
 
-function parseDeclaration(declaration) {
+function parseDeclaration(declaration, kind) {
     const result = {
         id: declaration.id,
         name: declaration.name,
+        kind,
         sources: declaration.sources,
         comment: declaration.comment,
         schema: [],
         // FIXME: Ultimately should be the name that was used to register
         registeredName: nameFromTypeName(declaration.name),
-        fileName: fileNameForTypeName(declaration.name)
+        fileName: ''
     }
+    result.fileName = fileNameForTypeName(result);
 
     const schemaTypeArgument = declaration.type.typeArguments[1];
     if(schemaTypeArgument.declaration.children) {
@@ -82,38 +78,33 @@ function parseDeclaration(declaration) {
     return result;
 }
 
-for(const declaration of typedocJson.children) {
-    const name = declaration.type.target.qualifiedName;
-    if(name === "ComponentConstructor" ) {
-        const component = parseDeclaration(declaration);
-        if(component.name in types.components) {
-            console.warn('Duplicate component', component.name);
-        }
-        types.components[component.name] = component;
-        lookup[component.id] = component;
-    } else if(name === "SystemConstructor") {
-        const system = parseDeclaration(declaration);
-        if(system.name in types.systems) {
-            console.warn('Duplicate system', system.name);
-        }
-        types.systems[system.name] = system;
-        lookup[system.id] = system;
-    } else if(name === "PrimitiveConstructor") {
-        const primitive = parseDeclaration(declaration);
-        if(primitive.name in types.primitives) {
-            console.warn('Duplicate primitive', primitive.name);
-        }
-        types.primitives[primitive.name] = primitive;
-        lookup[primitive.id] = primitive;
+const KINDS = {
+    "ComponentConstructor": "component",
+    "SystemConstructor": "system",
+    "PrimitiveConstructor": "primitive",
+};
+for(const rawDeclaration of typedocJson.children) {
+    const name = rawDeclaration.type.target.qualifiedName;
+    const kind = KINDS[name];
+    if(!kind) continue;
+
+    const declaration = parseDeclaration(rawDeclaration, kind);
+    if(declaration.name in types[kind]) {
+        console.warn('Duplicate', kind, declaration.name);
     }
+    types[kind][declaration.name] = declaration;
+    lookup[declaration.id] = declaration;
 }
 
 handlebars.registerHelper('eq', function(arg1, arg2) {
     return (arg1 == arg2) ? true : false;
 });
 
-handlebars.registerHelper('nameFromTypeName', nameFromTypeName);
-
+// HACK: Keep track of the current 'file' in order to output relative URLs
+let compileContext = {
+    currentFile: '',
+    currentPath: '',
+}
 const fromCommentImpl = function(input, inline) {
     if(!input) {
         return '';
@@ -126,7 +117,8 @@ const fromCommentImpl = function(input, inline) {
         } else if(part.tag === '@link') {
             const linked = lookup[part.target];
             if(linked) {
-                result += `[\`${linked.registeredName}\`](./${linked.fileName})`;
+                const relativeUrl = path.relative(compileContext.currentPath, linked.fileName)
+                result += `[\`${linked.registeredName}\`](${relativeUrl})`;
             } else {
                 console.warn('Unknown link destination', part.text, part.target);
                 result += `\`${part.text}\``;
@@ -152,8 +144,11 @@ handlebars.registerHelper('fromComment', function(input) {
     return fromCommentImpl(input, false);
 });
 
-if(!fs.existsSync('../temp/output')){
-    fs.mkdirSync('../temp/output');
+
+function ensureDirectoryExists(path) {
+    if(!fs.existsSync(path)){
+        fs.mkdirSync(path, { recursive: true });
+    }
 }
 
 const compiled = {
@@ -161,21 +156,16 @@ const compiled = {
     system: handlebars.compile(fs.readFileSync('../scripts/system-template.md').toString()),
     primitive: handlebars.compile(fs.readFileSync('../scripts/primitive-template.md').toString()),
 };
-for(const component of Object.values(types.components)) {
-    const path = fileNameForTypeName(component.name);
+for(const kind of Object.values(KINDS)) {
+    for(const declaration of Object.values(types[kind])) {
+        const fileName = declaration.fileName;
+        compileContext.currentFile = fileName;
+        compileContext.currentPath = fileName.substring(0, fileName.lastIndexOf('/'));
 
-    const contents = compiled.component(component);
-    fs.writeFileSync('../temp/output/' + path, contents);
-}
-for(const system of Object.values(types.systems)) {
-    const path = fileNameForTypeName(system.name);
+        const contents = compiled[kind](declaration);
 
-    const contents = compiled.system(system);
-    fs.writeFileSync('../temp/output/' + path, contents);
-}
-for(const primitive of Object.values(types.primitives)) {
-    const path = fileNameForTypeName(primitive.name);
-
-    const contents = compiled.primitive(primitive);
-    fs.writeFileSync('../temp/output/' + path, contents);
+        const fullPath = '../temp/output/' + fileName;
+        ensureDirectoryExists(fullPath.substring(0, fullPath.lastIndexOf('/')));
+        fs.writeFileSync(fullPath, contents);
+    }
 }
