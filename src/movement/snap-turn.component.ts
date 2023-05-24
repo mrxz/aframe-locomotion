@@ -17,6 +17,11 @@ type State = typeof NONE | typeof LEFT | typeof RIGHT | typeof DONE | typeof PRE
  * in place in discrete steps. This is accomplished by rotating and moving the target. It's assumed that
  * the reference is a descendant of the target. This can be used on the camera rig to achieve snap turning.
  *
+ * @emits rotation Target was rotated through this component. No movement is also signalled through
+ *      the `motion` event
+ * @emits prerotation  Target is about to rotate (only when a `delay` is configured)
+ * @emits postrotation Target has just rotated (only when a `delay` is configured)
+ *
  * @example
  * The `snap-turn` component needs to be applied to an entity that will emit the `axismove` event,
  * commenly one of the hands. Below is an example using a camera rig:

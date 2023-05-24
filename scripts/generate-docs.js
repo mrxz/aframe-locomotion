@@ -144,6 +144,23 @@ handlebars.registerHelper('fromComment', function(input) {
     return fromCommentImpl(input, false);
 });
 
+// FIXME: Pre-process for easier templating instead of doing double the work
+handlebars.registerHelper('fromEmitsCommentName', function(input) {
+    const result = fromCommentImpl(input, true);
+    const rawResult = result.toString();
+    return new handlebars.SafeString(rawResult.split(" ", 1)[0]);
+});
+
+handlebars.registerHelper('fromEmitsCommentDescription', function(input) {
+    const result = fromCommentImpl(input, true);
+    const rawResult = result.toString();
+    return new handlebars.SafeString(rawResult.substring(rawResult.indexOf(" ")));
+});
+
+handlebars.registerHelper('containsTag', function(tag, tags) {
+    return tags.some(t => t.tag === tag);
+});
+
 
 function ensureDirectoryExists(path) {
     if(!fs.existsSync(path)){
@@ -164,7 +181,7 @@ for(const kind of Object.values(KINDS)) {
 
         const contents = compiled[kind](declaration);
 
-        const fullPath = '../temp/output/' + fileName;
+        const fullPath = '../docs/reference/' + fileName;
         ensureDirectoryExists(fullPath.substring(0, fullPath.lastIndexOf('/')));
         fs.writeFileSync(fullPath, contents);
     }

@@ -1,4 +1,4 @@
-# <{{registeredName}}>
+# {{registeredName}}
 {{fromComment comment.summary}}
 
 ## Attributes

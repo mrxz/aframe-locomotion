@@ -2,12 +2,14 @@
 Primitive that shows a vignette when moving.
 
 ## Attributes
-| Attribute | Description | Default Value |
-|-----------|-------------|---------------|
-| motion-source | Selector for the entity that is the target of a moving component (like [`smooth-locomotion`](../movement/smooth-locomotion.component.md)). | none |
+| Attribute | Description | Type | Default Value |
+|----------|-------------|------|---------------|
+| intensity |  | `number` | 1 |
+| motion-source | Selector for the entity that is the target of a moving component (like [`smooth-locomotion`](../movement/smooth-locomotion.component.md)). | `selector` |  |
 
-## Usage
-The `al-vignette` primitive should be a direct child of the camera. The following shows the primitive being used with smooth locomotion.
+## Example
+The `al-vignette` primitive should be a direct child of the camera. The following shows
+the primitive being used with smooth locomotion.
 ```HTML
 <a-entity id="rig">
     <a-entity id="camera" camera position="0 1.6 0" wasd-controls look-controls>
@@ -21,3 +23,6 @@ The `al-vignette` primitive should be a direct child of the camera. The followin
     </a-entity>
 </a-entity>
 ```
+
+## Source
+[`src/auxillary/vignette.primitive.ts:45`](https://github.com/mrxz/aframe-locomotion/blob/e0a555a/src/auxillary/vignette.primitive.ts#L45)

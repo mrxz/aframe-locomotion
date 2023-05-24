@@ -10,6 +10,9 @@ const EPSILON = 0.00001;
  * It's assumed that the reference is a descendant of the target. This can be used on the camera rig
  * to achieve smooth turning.
  *
+ * @emits rotation Target was rotated through this component. No movement is also signalled through
+ *      the `motion` event
+ *
  * @example
  * The `smooth-turn` component needs to be applied to an entity that will emit the `axismove` event,
  * commenly one of the hands. Below is an example using a camera rig:

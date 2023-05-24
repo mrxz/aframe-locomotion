@@ -10,6 +10,17 @@
 | This component has no properties ||||
 {{/each}}
 
+{{#if (containsTag "@emits" comment.blockTags)}}
+## Events
+| Event Name | Description  |
+|------------|--------------|
+{{#each comment.blockTags}}
+{{#if (eq this.tag "@emits")}}
+| {{fromEmitsCommentName this.content}} | {{fromEmitsCommentDescription this.content}} |
+{{/if}}
+{{/each}}
+{{/if}}
+
 {{#each comment.blockTags}}
 {{#if (eq this.tag "@remarks")}}
 ## Remarks

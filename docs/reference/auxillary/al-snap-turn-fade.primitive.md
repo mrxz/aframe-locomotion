@@ -2,12 +2,14 @@
 Primitive that fades the view in/out when snap-turning. Requires the usage of [`snap-turn`](../movement/snap-turn.component.md).
 
 ## Attributes
-| Attribute | Description | Default Value |
-|-----------|-------------|---------------|
-| rotation-source | Selector for the entity that is rotated. This should be the target of [`snap-turn`](../movement/snap-turn.component.md) | none |
+| Attribute | Description | Type | Default Value |
+|----------|-------------|------|---------------|
+| rotation-source | Selector for the entity that is rotated. This should be the target of [`snap-turn`](../movement/snap-turn.component.md) | `selector` |  |
 
-## Usage
-The `al-snap-turn-fade` primitive should be a direct child of the camera. The following shows the primitive being used with snap-turning. Notice the configured delay, without it the snap is instant and no fade will take place:
+## Example
+The `al-snap-turn-fade` primitive should be a direct child of the camera. The following shows
+the primitive being used with snap-turning. Notice the configured delay, without it the snap
+is instant and no fade will take place:
 ```HTML
 <a-entity id="rig">
     <a-entity id="camera" camera position="0 1.6 0" wasd-controls look-controls>
@@ -20,3 +22,6 @@ The `al-snap-turn-fade` primitive should be a direct child of the camera. The fo
     </a-entity>
 </a-entity>
 ```
+
+## Source
+[`src/auxillary/fade.primitive.ts:41`](https://github.com/mrxz/aframe-locomotion/blob/e0a555a/src/auxillary/fade.primitive.ts#L41)

@@ -13,6 +13,8 @@ const VELOCITY_COMPONENTS: Array<keyof Components> = ['gravity'];
  * The rotation of the reference is used to determine the direction to move in. This can be used on a
  * camera rig to move around the world using either head orientation or controller orientation.
  *
+ * @emits motion Target was moved through this component. No movement is also signalled through the `motion` event
+ *
  * @example
  * The `smooth-locomotion` component needs to be applied to an entity that will emit the `axismove` event,
  * commenly one of the hands. Below is an example using a camera rig to enable smooth locomotion using the

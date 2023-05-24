@@ -2,12 +2,13 @@
 Primitive that fades the view in/out when the head is placed inside an wall or object.
 
 ## Attributes
-| Attribute | Description | Default Value |
-|-----------|-------------|---------------|
-| objects | Selector for all the objects to check head occlusion for | none |
+| Attribute | Description | Type | Default Value |
+|----------|-------------|------|---------------|
+| objects | Selector for all the objects to check head occlusion for | `selectorAll` |  |
 
-## Usage
-The `al-head-occlusion-fade` primitive should be a direct child of the camera. The following shows the primitive being used.
+## Example
+The `al-head-occlusion-fade` primitive should be a direct child of the camera. The following shows
+the primitive being used.
 ```HTML
 <a-box class="box"></a-box>
 
@@ -18,4 +19,8 @@ The `al-head-occlusion-fade` primitive should be a direct child of the camera. T
 </a-entity>
 ```
 
-> **Note:** The head occlusion detection uses the XR camera, meaning it won't activate when vr-mode isn't active. If this is something you need/want, please open a new issue on GitHub and indicate your use case.
+> **Note:** The head occlusion detection uses the XR camera, meaning it won't activate when vr-mode isn't
+> active. If this is something you need/want, please open a new issue on GitHub and indicate your use case.
+
+## Source
+[`src/auxillary/fade.primitive.ts:73`](https://github.com/mrxz/aframe-locomotion/blob/e0a555a/src/auxillary/fade.primitive.ts#L73)
