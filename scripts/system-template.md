@@ -20,3 +20,10 @@
 {{fromComment this.content}}
 {{/if}}
 {{/each}}
+
+{{#if sources}}
+## Source
+{{#each sources}}
+[`{{this.fileName}}:{{this.line}}`]({{this.url}})
+{{/each}}
+{{/if}}
