@@ -7,6 +7,7 @@ const types = {
     systems: {},
     primitives: {},
 };
+const lookup = {};
 
 const deriveTypeFromDefault = (defaultValue) => {
     if(typeof defaultValue === 'number') {
@@ -19,56 +20,6 @@ const deriveTypeFromDefault = (defaultValue) => {
         return 'string';
     }
     return null;
-}
-
-function parseDeclaration(declaration) {
-    const result = {
-        name: declaration.name,
-        sources: declaration.sources,
-        comment: declaration.comment,
-        schema: []
-    }
-
-    const schemaTypeArgument = declaration.type.typeArguments[1];
-    if(schemaTypeArgument.declaration.children) {
-        for(const schemaProperty of schemaTypeArgument.declaration.children) {
-            const schemaPropertyDetails = Object.fromEntries(schemaProperty.type.declaration.children.map(x => [x.name, x]));
-            const property = {
-                name: schemaProperty.name,
-                comment: schemaProperty.comment,
-                type: schemaPropertyDetails['type']?.type.value,
-                default: schemaPropertyDetails['default']?.type.value,
-            };
-            if(!property.type) {
-                property.type = deriveTypeFromDefault(property.default);
-            }
-            result.schema.push(property);
-        }
-    }
-
-    return result;
-}
-for(const declaration of typedocJson.children) {
-    const name = declaration.type.target.qualifiedName;
-    if(name === "ComponentConstructor" ) {
-        const component = parseDeclaration(declaration);
-        if(component.name in types.components) {
-            console.warn('Duplicate component', component.name);
-        }
-        types.components[component.name] = component;
-    } else if(name === "SystemConstructor") {
-        const system = parseDeclaration(declaration);
-        if(system.name in types.systems) {
-            console.warn('Duplicate system', system.name);
-        }
-        types.systems[system.name] = system;
-    } else if(name === "PrimitiveConstructor") {
-        const primitive = parseDeclaration(declaration);
-        if(primitive.name in types.primitives) {
-            console.warn('Duplicate primitive', primitive.name);
-        }
-        types.primitives[primitive.name] = primitive;
-    }
 }
 
 // Source: https://stackoverflow.com/a/67243723
@@ -99,6 +50,64 @@ const fileNameForTypeName = (typeName) => {
     return result + '.md';
 }
 
+function parseDeclaration(declaration) {
+    const result = {
+        id: declaration.id,
+        name: declaration.name,
+        sources: declaration.sources,
+        comment: declaration.comment,
+        schema: [],
+        // FIXME: Ultimately should be the name that was used to register
+        registeredName: nameFromTypeName(declaration.name),
+        fileName: fileNameForTypeName(declaration.name)
+    }
+
+    const schemaTypeArgument = declaration.type.typeArguments[1];
+    if(schemaTypeArgument.declaration.children) {
+        for(const schemaProperty of schemaTypeArgument.declaration.children) {
+            const schemaPropertyDetails = Object.fromEntries(schemaProperty.type.declaration.children.map(x => [x.name, x]));
+            const property = {
+                name: schemaProperty.name,
+                comment: schemaProperty.comment,
+                type: schemaPropertyDetails['type']?.type.value,
+                default: schemaPropertyDetails['default']?.type.value,
+            };
+            if(!property.type) {
+                property.type = deriveTypeFromDefault(property.default);
+            }
+            result.schema.push(property);
+        }
+    }
+
+    return result;
+}
+
+for(const declaration of typedocJson.children) {
+    const name = declaration.type.target.qualifiedName;
+    if(name === "ComponentConstructor" ) {
+        const component = parseDeclaration(declaration);
+        if(component.name in types.components) {
+            console.warn('Duplicate component', component.name);
+        }
+        types.components[component.name] = component;
+        lookup[component.id] = component;
+    } else if(name === "SystemConstructor") {
+        const system = parseDeclaration(declaration);
+        if(system.name in types.systems) {
+            console.warn('Duplicate system', system.name);
+        }
+        types.systems[system.name] = system;
+        lookup[system.id] = system;
+    } else if(name === "PrimitiveConstructor") {
+        const primitive = parseDeclaration(declaration);
+        if(primitive.name in types.primitives) {
+            console.warn('Duplicate primitive', primitive.name);
+        }
+        types.primitives[primitive.name] = primitive;
+        lookup[primitive.id] = primitive;
+    }
+}
+
 handlebars.registerHelper('eq', function(arg1, arg2) {
     return (arg1 == arg2) ? true : false;
 });
@@ -115,14 +124,11 @@ const fromCommentImpl = function(input, inline) {
         if(part.kind === 'text') {
             result += part.text;
         } else if(part.tag === '@link') {
-            const link = part.text;
-            const filename = fileNameForTypeName(link);
-            if(link in types.components) {
-                result += `[\`${filename.substring(0, filename.indexOf('.'))}\`](./${filename})`;
-            } else if(link in types.systems) {
-                result += `[\`${filename.substring(0, filename.indexOf('.'))}\`](./${filename})`;
+            const linked = lookup[part.target];
+            if(linked) {
+                result += `[\`${linked.registeredName}\`](./${linked.fileName})`;
             } else {
-                console.warn('Unknown link destination', link);
+                console.warn('Unknown link destination', part.text, part.target);
                 result += `\`${part.text}\``;
             }
         } else if(part.kind === 'code') {
@@ -145,6 +151,10 @@ handlebars.registerHelper('fromCommentInline', function(input) {
 handlebars.registerHelper('fromComment', function(input) {
     return fromCommentImpl(input, false);
 });
+
+if(!fs.existsSync('../temp/output')){
+    fs.mkdirSync('../temp/output');
+}
 
 const compiled = {
     component: handlebars.compile(fs.readFileSync('../scripts/component-template.md').toString()),

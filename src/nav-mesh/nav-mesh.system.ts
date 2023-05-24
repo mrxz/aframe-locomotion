@@ -1,6 +1,7 @@
 import type { Entity, StrictSystem } from "aframe";
 import { NavMeshStrategy } from "./strategy/strategy.interface";
 
+/** @hidden */
 export const NavMeshSystem = AFRAME.registerSystem('nav-mesh', {
     schema: {},
     active: false,

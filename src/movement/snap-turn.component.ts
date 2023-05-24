@@ -32,7 +32,7 @@ type State = typeof NONE | typeof LEFT | typeof RIGHT | typeof DONE | typeof PRE
  *
  * In case a transition needs to be shown a delay can be configured. This delay is applied twice: before and
  * after the actual snap rotation. This can be used to make a quick fade transition for each snap turn,
- * see {@link }
+ * see {@link AlSnapTurnFadePrimitive}
  */
 export const SnapTurnComponent = AFRAME.registerComponent('snap-turn', strict<{
     /**

@@ -11,7 +11,7 @@
   "scripts": {
     "dev": "concurrently \"rollup -c rollup.config.dev.js -w\" \"live-server --port=4000 --no-browser ./examples --mount=/js:./dist\"",
     "build": "rollup -c rollup.config.prod.js",
-    "docs": "typedoc --json temp/docs.json src/main.ts && cd scripts && node ./generate-docs.js"
+    "docs": "rimraf temp/ && typedoc --json temp/docs.json src/main.ts && cd scripts && node ./generate-docs.js"
   },
   "repository": {
     "type": "git",
@@ -38,6 +38,7 @@
     "aframe-typescript": "portal:libs/aframe-typescript/",
     "concurrently": "^7.1.0",
     "handlebars": "^4.7.7",
+    "rimraf": "^5.0.1",
     "rollup": "^2.71.1",
     "rollup-plugin-dts": "^5.3.0",
     "rollup-plugin-terser": "^7.0.2",

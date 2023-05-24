@@ -3,6 +3,7 @@ import { Systems, THREE } from "aframe";
 import { assertComponent, strict } from "aframe-typescript";
 import { CandidateValidator } from "../nav-mesh/strategy/strategy.interface";
 
+/** @hidden */
 export const NavMeshConstrainedComponent = AFRAME.registerComponent('nav-mesh-constrained', strict<{
     navMeshSystem: Systems['nav-mesh']
 }>().override<'tick'>().component({
