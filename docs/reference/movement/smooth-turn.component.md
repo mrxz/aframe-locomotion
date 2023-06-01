@@ -16,7 +16,8 @@ to achieve smooth turning.
 ## Events
 | Event Name | Description  |
 |------------|--------------|
-| rotation |  Target was rotated through this component. No movement is also signalled through      the `motion` event |
+| rotation | Target was rotated through this component. No movement is also signalled through      the `motion` event |
+
 
 ## Example
 The `smooth-turn` component needs to be applied to an entity that will emit the `axismove` event,
@@ -33,4 +34,4 @@ commenly one of the hands. Below is an example using a camera rig:
 ```
 
 ## Source
-[`src/movement/smooth-turn.component.ts:30`](https://github.com/mrxz/aframe-locomotion/blob/e0a555a/src/movement/smooth-turn.component.ts#L30)
+[`src/movement/smooth-turn.component.ts:30`](https://github.com/mrxz/aframe-locomotion/blob/7d28051/src/movement/smooth-turn.component.ts#L30)

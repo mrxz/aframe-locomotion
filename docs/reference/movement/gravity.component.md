@@ -13,6 +13,7 @@ On its own the component won't do anything.
 The `gravity` component should be applied to the target of motion.
 When using [`smooth-locomotion`](smooth-locomotion.component.md) with the default camera rig,
 the rig element is the target and should have the `gravity` component on it.
+
 ## Example
 ```HTML
 <a-entity id="rig" gravity>
@@ -26,4 +27,4 @@ the rig element is the target and should have the `gravity` component on it.
 ```
 
 ## Source
-[`src/movement/gravity.component.ts:26`](https://github.com/mrxz/aframe-locomotion/blob/e0a555a/src/movement/gravity.component.ts#L26)
+[`src/movement/gravity.component.ts:26`](https://github.com/mrxz/aframe-locomotion/blob/7d28051/src/movement/gravity.component.ts#L26)

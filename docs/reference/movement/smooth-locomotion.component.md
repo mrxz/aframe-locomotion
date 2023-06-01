@@ -8,7 +8,7 @@ camera rig to move around the world using either head orientation or controller 
 |----------|-------------|------|---------------|
 | backward | Whether or not backward movement should be applied | `boolean` | true |
 | enabled | Whether the smooth locomotion is active or not | `boolean` | true |
-| fallMode | The mode for how falling should be handled in case the reference is moving off an edge. With `snap` the reference will always snap to the ground, instantly dropping down. With `prevent` the reference won't be moved over the edge. With `fall` the reference is moved over the edge, but not forced/snapped to the ground, allowing it to fall down. (Only applies when using the `NavMeshSystem`) | `string` | fall |
+| fallMode | The mode for how falling should be handled in case the reference is moving off an edge. With `snap` the reference will always snap to the ground, instantly dropping down. With `prevent` the reference won't be moved over the edge. With `fall` the reference is moved over the edge, but not forced/snapped to the ground, allowing it to fall down. (Only applies when using the NavMeshSystem) | `string` | fall |
 | forward | Whether or not forward movement should be applied | `boolean` | true |
 | inputMode | The mode for interpreting the input. With the `binary` mode even small inputs will result in maximum speed being applied. The `analog` mode will scale the applied speed between 0 and moveSpeed based on the input magnitude | `string` | binary |
 | moveSpeed | The (max) speed for the target (m/s) | `number` | 1.5 |
@@ -19,7 +19,8 @@ camera rig to move around the world using either head orientation or controller 
 ## Events
 | Event Name | Description  |
 |------------|--------------|
-| motion |  Target was moved through this component. No movement is also signalled through the `motion` event |
+| motion | Target was moved through this component. No movement is also signalled through the `motion` event |
+
 
 ## Example
 The `smooth-locomotion` component needs to be applied to an entity that will emit the `axismove` event,
@@ -47,4 +48,4 @@ To use controller orientation instead, change the reference to the controller, a
 ```
 
 ## Source
-[`src/movement/smooth-locomotion.component.ts:43`](https://github.com/mrxz/aframe-locomotion/blob/e0a555a/src/movement/smooth-locomotion.component.ts#L43)
+[`src/movement/smooth-locomotion.component.ts:43`](https://github.com/mrxz/aframe-locomotion/blob/7d28051/src/movement/smooth-locomotion.component.ts#L43)

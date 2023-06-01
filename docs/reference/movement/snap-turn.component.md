@@ -17,9 +17,10 @@ the reference is a descendant of the target. This can be used on the camera rig 
 ## Events
 | Event Name | Description  |
 |------------|--------------|
-| rotation |  Target was rotated through this component. No movement is also signalled through      the `motion` event |
-| prerotation |   Target is about to rotate (only when a `delay` is configured) |
-| postrotation |  Target has just rotated (only when a `delay` is configured) |
+| rotation | Target was rotated through this component. No movement is also signalled through      the `motion` event |
+| prerotation |  Target is about to rotate (only when a `delay` is configured) |
+| postrotation | Target has just rotated (only when a `delay` is configured) |
+
 
 ## Example
 The `snap-turn` component needs to be applied to an entity that will emit the `axismove` event,
@@ -40,4 +41,4 @@ after the actual snap rotation. This can be used to make a quick fade transition
 see [`al-snap-turn-fade`](../auxillary/al-snap-turn-fade.primitive.md)
 
 ## Source
-[`src/movement/snap-turn.component.ts:43`](https://github.com/mrxz/aframe-locomotion/blob/e0a555a/src/movement/snap-turn.component.ts#L43)
+[`src/movement/snap-turn.component.ts:43`](https://github.com/mrxz/aframe-locomotion/blob/7d28051/src/movement/snap-turn.component.ts#L43)

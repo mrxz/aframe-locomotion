@@ -1,5 +1,5 @@
 import { DetailEvent } from 'aframe';
-import { AlHeadOcclusionFadePrimitive, AlSnapTurnFadePrimitive, AlVignettePrimitive, HeadOcclusionComponent, MotionInputComponent, NavMeshConstrainedComponent, RotationInputComponent } from './auxillary/index';
+import { AlHeadOcclusionFadePrimitive, AlSnapTurnFadePrimitive, AlVignettePrimitive, FadeShader, HeadOcclusionComponent, MotionInputComponent, NavMeshConstrainedComponent, RotationInputComponent, VignetteShader } from './auxillary/index';
 import { GravityComponent, SmoothLocomotionComponent, SmoothTurnComponent, SnapTurnComponent } from './movement/index';
 import { NavMeshComponent, NavMeshStrategyComponent, NavMeshSystem } from './nav-mesh/index';
 
@@ -29,6 +29,11 @@ declare module "aframe" {
         "al-head-occlusion-fade": typeof AlHeadOcclusionFadePrimitive,
         "al-snap-turn-fade": typeof AlSnapTurnFadePrimitive,
         "al-vignette": typeof AlVignettePrimitive,
+    }
+
+    export interface Shaders {
+        "fade": typeof FadeShader,
+        "vignette": typeof VignetteShader,
     }
 
     export interface EntityEvents {

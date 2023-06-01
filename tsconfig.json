@@ -18,9 +18,9 @@
       "declaration": false,
       "rootDir": "src",
       "paths": {
-        "aframe": ["./types/aframe/"]
+        "aframe": ["./node_modules/aframe-types/"]
       }
     },
     "include": ["src"],
-    "exclude": ["node_modules", "**/dist/*", "libs"]
+    "exclude": ["node_modules", "**/dist/*"]
 }

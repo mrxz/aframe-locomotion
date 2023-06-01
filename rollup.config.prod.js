@@ -31,6 +31,7 @@ export default [
     {
         input: './dist/typings/main.d.ts',
         output: [{ file: "dist/aframe-locomotion.d.ts", format: "es" }],
+        external: ['aframe'],
         plugins: [dts()],
     }
 ]

@@ -1,6 +1,6 @@
 import * as AFRAME from "aframe";
 
-AFRAME.registerShader('vignette', {
+export const VignetteShader = AFRAME.registerShader('vignette', {
     schema: {
         'intensity': { type: "number", default: 2, max: 10, min: 0, is: 'uniform' }
     },

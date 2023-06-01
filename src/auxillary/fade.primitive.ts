@@ -1,6 +1,7 @@
 import * as AFRAME from "aframe";
+import { SnapTurnComponent } from "../movement";
 
-AFRAME.registerShader('fade', {
+export const FadeShader = AFRAME.registerShader('fade', {
     schema: {
         'color': { type: "vec3", is: 'uniform' },
         'intensity': { type: "number", default: 0.0, max: 1.0, min: 0.0, is: 'uniform' }

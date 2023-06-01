@@ -1,6 +1,0 @@
-[submodule "types/aframe"]
-	path = types/aframe
-	url = git@github.com:mrxz/aframe-types.git
-[submodule "libs/aframe-typescript"]
-	path = libs/aframe-typescript
-	url = git@github.com:mrxz/aframe-typescript.git

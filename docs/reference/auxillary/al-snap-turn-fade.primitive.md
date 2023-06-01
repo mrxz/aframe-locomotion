@@ -2,9 +2,11 @@
 Primitive that fades the view in/out when snap-turning. Requires the usage of [`snap-turn`](../movement/snap-turn.component.md).
 
 ## Attributes
-| Attribute | Description | Type | Default Value |
-|----------|-------------|------|---------------|
-| rotation-source | Selector for the entity that is rotated. This should be the target of [`snap-turn`](../movement/snap-turn.component.md) | `selector` |  |
+| Attribute | Maps to | Description | Type |
+|-----------|---------|-------------|------|
+| rotation-source | rotation-input.source | Selector for the entity that is rotated. This should be the target of [`snap-turn`](../movement/snap-turn.component.md) | `selector` |
+
+
 
 ## Example
 The `al-snap-turn-fade` primitive should be a direct child of the camera. The following shows
@@ -24,4 +26,4 @@ is instant and no fade will take place:
 ```
 
 ## Source
-[`src/auxillary/fade.primitive.ts:41`](https://github.com/mrxz/aframe-locomotion/blob/e0a555a/src/auxillary/fade.primitive.ts#L41)
+[`src/auxillary/fade.primitive.ts:42`](https://github.com/mrxz/aframe-locomotion/blob/7d28051/src/auxillary/fade.primitive.ts#L42)

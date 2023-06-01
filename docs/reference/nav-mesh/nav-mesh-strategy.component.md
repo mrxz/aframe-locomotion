@@ -9,6 +9,7 @@ Once configured, nav meshes need to be marked using the [`nav-mesh`](nav-mesh.co
 | strategy | Either `simple` or `scan`. The `simple` strategy allows to check if movement is valid based on the nav-mesh in a binary fashion (movement is either valid or not). The `scan` strategy falls back to alternatives that are slightly to the side of the movement. This allows sliding across walls. | `string` | scan |
 
 
+
 ## Example
 Add the `nav-mesh-strategy` component to the scene
 ```HTML
@@ -22,4 +23,4 @@ doesn't handle this for you, so make sure to manually add `material="visible: fa
 the mesh in some other way.
 
 ## Source
-[`src/nav-mesh/nav-mesh-strategy.component.ts:28`](https://github.com/mrxz/aframe-locomotion/blob/e0a555a/src/nav-mesh/nav-mesh-strategy.component.ts#L28)
+[`src/nav-mesh/nav-mesh-strategy.component.ts:28`](https://github.com/mrxz/aframe-locomotion/blob/7d28051/src/nav-mesh/nav-mesh-strategy.component.ts#L28)
