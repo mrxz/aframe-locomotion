@@ -1,0 +1,28 @@
+{% extends "main.html" %}
+
+{% block libs %}
+    {{ super() }}
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-locomotion@0.2.0/dist/aframe-locomotion.umd.min.js"></script>
+{% endblock %}
+
+{% block content %}
+
+    <!--
+    Hack: check whether the content contains a h1 headline. If it doesn't, the
+    page title (or respectively site name) is used as the main headline.
+    -->
+    {% if "\x3ch1" not in page.content %}
+    <h1>{{ page.title | d(config.site_name, true)}}</h1>
+    {% endif %}
+
+    <div id="example-container" style="height: 500px"></div>
+
+    {{ page.content }}
+
+    <script>
+        const code = document.querySelector('.md-content .highlight > pre');
+        const container = document.getElementById('example-container');
+        container.innerHTML = code.textContent;
+    </script>
+{% endblock %}

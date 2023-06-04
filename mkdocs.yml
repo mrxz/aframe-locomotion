@@ -1,11 +1,13 @@
 site_name: A-Frame Locomotion Docs
-site_url: https://aframe-locomotion.fern.solutions/docs/
+site_url: https://aframe-locomotion.fern.solutions/
 theme:
   name: material
   features:
     - content.code.copy
     - navigation.sections
     - navigation.expand
+    - navigation.tabs
+  custom_dir: docs/.overrides
 
 markdown_extensions:
   - pymdownx.highlight:

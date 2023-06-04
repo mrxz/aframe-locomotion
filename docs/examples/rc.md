@@ -1,0 +1,28 @@
+---
+template: example.html
+---
+
+### Code
+```HTML
+<a-scene background="color: gray" embedded>
+    <!-- Simple scene  -->
+    <a-box scale="20 20 20" position="0 -10 0" material="src: url(../assets/grid.png); repeat: 20 20"></a-box>
+    <a-sphere color="red" radius="0.2" scale="1 0.2 1"></a-sphere>
+
+    <!-- Entity for remote control -->
+    <a-box color="green" id="car" scale="0.2 0.2 0.5"></a-box>
+
+    <!-- Camera rig -->
+    <a-entity id="rig">
+        <a-camera id="camera"></a-camera>
+
+        <!-- Hands -->
+        <a-entity hand-controls="hand: left" smooth-locomotion="target: #car; reference: #car; sideways: false; inputMode: analog; moveSpeed: 4"></a-entity>
+        <a-entity hand-controls="hand: right" smooth-turn="target: #car; reference: #car; turnSpeed: 180"></a-entity>
+    </a-entity>
+</a-scene>
+```
+
+### See Also
+ - [smooth-locomotion component](../reference/movement/smooth-locomotion.component.md)
+ - [smooth-turn component](../reference/movement/smooth-turn.component.md)
