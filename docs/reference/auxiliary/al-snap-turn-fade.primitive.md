@@ -26,4 +26,4 @@ is instant and no fade will take place:
 ```
 
 ## Source
-[`src/auxillary/fade.primitive.ts:42`](https://github.com/mrxz/aframe-locomotion/blob/7d28051/src/auxillary/fade.primitive.ts#L42)
+[`src/auxiliary/fade.primitive.ts:42`](https://github.com/mrxz/aframe-locomotion/blob/9cb6c95/src/auxiliary/fade.primitive.ts#L42)

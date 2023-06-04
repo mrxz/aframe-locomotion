@@ -4,7 +4,8 @@ theme:
   name: material
   features:
     - content.code.copy
-
+    - navigation.sections
+    - navigation.expand
 
 markdown_extensions:
   - pymdownx.highlight:
@@ -14,3 +15,14 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.snippets
   - pymdownx.superfences
+
+extra:
+  social:
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/noerihuisman
+    - icon: fontawesome/brands/mastodon
+      link: https://arvr.social/@noerihuisman
+    - icon: fontawesome/brands/github
+      link: https://github.com/mrxz
+
+repo_url: https://github.com/mrxz/aframe-locomotion

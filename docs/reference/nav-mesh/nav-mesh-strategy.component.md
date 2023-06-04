@@ -23,4 +23,4 @@ doesn't handle this for you, so make sure to manually add `material="visible: fa
 the mesh in some other way.
 
 ## Source
-[`src/nav-mesh/nav-mesh-strategy.component.ts:28`](https://github.com/mrxz/aframe-locomotion/blob/7d28051/src/nav-mesh/nav-mesh-strategy.component.ts#L28)
+[`src/nav-mesh/nav-mesh-strategy.component.ts:28`](https://github.com/mrxz/aframe-locomotion/blob/9cb6c95/src/nav-mesh/nav-mesh-strategy.component.ts#L28)

@@ -1,9 +1,9 @@
 import { DetailEvent } from 'aframe';
-import { AlHeadOcclusionFadePrimitive, AlSnapTurnFadePrimitive, AlVignettePrimitive, FadeShader, HeadOcclusionComponent, MotionInputComponent, NavMeshConstrainedComponent, RotationInputComponent, VignetteShader } from './auxillary/index';
+import { AlHeadOcclusionFadePrimitive, AlSnapTurnFadePrimitive, AlVignettePrimitive, FadeShader, HeadOcclusionComponent, MotionInputComponent, NavMeshConstrainedComponent, RotationInputComponent, VignetteShader } from './auxiliary/index';
 import { GravityComponent, SmoothLocomotionComponent, SmoothTurnComponent, SnapTurnComponent } from './movement/index';
 import { NavMeshComponent, NavMeshStrategyComponent, NavMeshSystem } from './nav-mesh/index';
 
-export * from './auxillary/index';
+export * from './auxiliary/index';
 export * from './movement/index';
 export * from './nav-mesh/index';
 

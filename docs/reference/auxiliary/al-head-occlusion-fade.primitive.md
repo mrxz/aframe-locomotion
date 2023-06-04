@@ -25,4 +25,4 @@ the primitive being used.
 > active. If this is something you need/want, please open a new issue on GitHub and indicate your use case.
 
 ## Source
-[`src/auxillary/fade.primitive.ts:74`](https://github.com/mrxz/aframe-locomotion/blob/7d28051/src/auxillary/fade.primitive.ts#L74)
+[`src/auxiliary/fade.primitive.ts:74`](https://github.com/mrxz/aframe-locomotion/blob/9cb6c95/src/auxiliary/fade.primitive.ts#L74)
