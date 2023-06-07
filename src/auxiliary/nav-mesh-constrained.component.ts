@@ -5,8 +5,9 @@ import { CandidateValidator } from "../nav-mesh/strategy/strategy.interface";
 
 /** @internal */
 export const NavMeshConstrainedComponent = AFRAME.registerComponent('nav-mesh-constrained', strict<{
+    locomotionSystem: Systems['locomotion'],
     navMeshSystem: Systems['nav-mesh']
-}>().override<'tick'>().component({
+}>().component({
     schema: {
         /**
          * Offset for the raycasting to take place, commonly used to offset the raycast upwards.
@@ -15,15 +16,17 @@ export const NavMeshConstrainedComponent = AFRAME.registerComponent('nav-mesh-co
         fallMode: { default: 'snap' }
     },
     init: function() {
+        this.locomotionSystem = this.el.sceneEl.systems['locomotion'];
         this.navMeshSystem = this.el.sceneEl.systems['nav-mesh'];
+        this.locomotionSystem.addPostMotionCallback(this);
     },
-    tick: (function() {
+    postMotion: (function() {
         const lastPosition = new THREE.Vector3();
         const newPosition = new THREE.Vector3();
 
-        return function(this: any, _t: number, dt: number) {
+        return function(this: any) {
             assertComponent<InstanceType<typeof NavMeshConstrainedComponent>>(this);
-            if(!dt || !this.navMeshSystem || !this.navMeshSystem.active) {
+            if(!this.navMeshSystem || !this.navMeshSystem.active) {
                 return;
             }
 
@@ -43,5 +46,8 @@ export const NavMeshConstrainedComponent = AFRAME.registerComponent('nav-mesh-co
             this.el.object3D.getWorldPosition(lastPosition);
             lastPosition.sub(this.data.offset as THREE.Vector3);
         }
-    })()
+    })(),
+    remove: function() {
+        this.locomotionSystem.removePostMotionCallback(this);
+    }
 }));

@@ -1,6 +1,6 @@
 import { DetailEvent } from 'aframe';
 import { AlHeadOcclusionFadePrimitive, AlSnapTurnFadePrimitive, AlVignettePrimitive, FadeShader, HeadOcclusionComponent, MotionInputComponent, NavMeshConstrainedComponent, RotationInputComponent, VignetteShader } from './auxiliary/index';
-import { GravityComponent, SmoothLocomotionComponent, SmoothTurnComponent, SnapTurnComponent } from './movement/index';
+import { GravityComponent, LocomotionSystem, SmoothLocomotionComponent, SmoothTurnComponent, SnapTurnComponent } from './movement/index';
 import { NavMeshComponent, NavMeshStrategyComponent, NavMeshSystem } from './nav-mesh/index';
 
 export * from './auxiliary/index';
@@ -9,7 +9,8 @@ export * from './nav-mesh/index';
 
 declare module "aframe" {
     export interface Systems {
-        "nav-mesh": InstanceType<typeof NavMeshSystem>
+        "locomotion": InstanceType<typeof LocomotionSystem>,
+        "nav-mesh": InstanceType<typeof NavMeshSystem>,
     }
 
     export interface Components {
