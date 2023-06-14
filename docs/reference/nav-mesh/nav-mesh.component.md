@@ -20,5 +20,6 @@ Mark any entity that holds a navigation mesh:
 The `nav-mesh` component doesn't handle this for you, so make sure to manually add
 `material="visible: false"` or hide the mesh in some other way.
 
+
 ## Source
-[`src/nav-mesh/nav-mesh.component.ts:18`](https://github.com/mrxz/aframe-locomotion/blob/9cb6c95/src/nav-mesh/nav-mesh.component.ts#L18)
+[`src/nav-mesh/nav-mesh.component.ts:18`](https://github.com/mrxz/aframe-locomotion/blob/215b9f9/src/nav-mesh/nav-mesh.component.ts#L18)

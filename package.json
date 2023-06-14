@@ -9,7 +9,7 @@
   "author": "Noeri Huisman",
   "license": "MIT",
   "scripts": {
-    "dev": "concurrently \"rollup -c rollup.config.dev.js -w\" \"live-server --port=4000 --no-browser ./examples --mount=/js:./dist\"",
+    "dev": "concurrently \"rollup -c rollup.config.dev.js -w\" \"live-server --port=4000 --no-browser ./dev --mount=/js:./dist\"",
     "build": "rollup -c rollup.config.prod.js",
     "docs": "rimraf docs/reference/ && aframe-typescript-docs-generator -o docs/reference/"
   },
@@ -36,9 +36,9 @@
     "@rollup/plugin-typescript": "^11.1.1",
     "@types/animejs": "3.1.0",
     "@types/three": "0.147.1",
-    "aframe-types": "^0.8.6",
+    "aframe-types": "0.8.8",
     "aframe-typescript": "aframe-1.4.2",
-    "aframe-typescript-docs-generator": "^0.8.3",
+    "aframe-typescript-docs-generator": "0.8.5",
     "concurrently": "^7.1.0",
     "handlebars": "^4.7.7",
     "rimraf": "^5.0.1",

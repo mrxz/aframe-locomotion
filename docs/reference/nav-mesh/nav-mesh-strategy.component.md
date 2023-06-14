@@ -22,5 +22,6 @@ Add the `nav-mesh-strategy` component to the scene
 doesn't handle this for you, so make sure to manually add `material="visible: false"` or hide
 the mesh in some other way.
 
+
 ## Source
-[`src/nav-mesh/nav-mesh-strategy.component.ts:28`](https://github.com/mrxz/aframe-locomotion/blob/9cb6c95/src/nav-mesh/nav-mesh-strategy.component.ts#L28)
+[`src/nav-mesh/nav-mesh-strategy.component.ts:28`](https://github.com/mrxz/aframe-locomotion/blob/215b9f9/src/nav-mesh/nav-mesh-strategy.component.ts#L28)

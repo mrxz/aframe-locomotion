@@ -40,5 +40,6 @@ In case a transition needs to be shown a delay can be configured. This delay is 
 after the actual snap rotation. This can be used to make a quick fade transition for each snap turn,
 see [`al-snap-turn-fade`](../auxiliary/al-snap-turn-fade.primitive.md)
 
+
 ## Source
-[`src/movement/snap-turn.component.ts:43`](https://github.com/mrxz/aframe-locomotion/blob/9cb6c95/src/movement/snap-turn.component.ts#L43)
+[`src/movement/snap-turn.component.ts:43`](https://github.com/mrxz/aframe-locomotion/blob/215b9f9/src/movement/snap-turn.component.ts#L43)

@@ -26,5 +26,6 @@ the primitive being used with smooth locomotion.
 </a-entity>
 ```
 
+
 ## Source
-[`src/auxiliary/vignette.primitive.ts:45`](https://github.com/mrxz/aframe-locomotion/blob/9cb6c95/src/auxiliary/vignette.primitive.ts#L45)
+[`src/auxiliary/vignette.primitive.ts:45`](https://github.com/mrxz/aframe-locomotion/blob/215b9f9/src/auxiliary/vignette.primitive.ts#L45)

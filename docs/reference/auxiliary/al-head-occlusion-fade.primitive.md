@@ -24,5 +24,6 @@ the primitive being used.
 > **Note:** The head occlusion detection uses the XR camera, meaning it won't activate when vr-mode isn't
 > active. If this is something you need/want, please open a new issue on GitHub and indicate your use case.
 
+
 ## Source
-[`src/auxiliary/fade.primitive.ts:74`](https://github.com/mrxz/aframe-locomotion/blob/9cb6c95/src/auxiliary/fade.primitive.ts#L74)
+[`src/auxiliary/fade.primitive.ts:74`](https://github.com/mrxz/aframe-locomotion/blob/215b9f9/src/auxiliary/fade.primitive.ts#L74)

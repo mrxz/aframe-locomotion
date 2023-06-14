@@ -26,5 +26,6 @@ the rig element is the target and should have the `gravity` component on it.
 </a-entity>
 ```
 
+
 ## Source
-[`src/movement/gravity.component.ts:26`](https://github.com/mrxz/aframe-locomotion/blob/9cb6c95/src/movement/gravity.component.ts#L26)
+[`src/movement/gravity.component.ts:26`](https://github.com/mrxz/aframe-locomotion/blob/215b9f9/src/movement/gravity.component.ts#L26)
