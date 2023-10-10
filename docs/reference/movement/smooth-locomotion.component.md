@@ -49,4 +49,4 @@ To use controller orientation instead, change the reference to the controller, a
 
 
 ## Source
-[`src/movement/smooth-locomotion.component.ts:43`](https://github.com/mrxz/aframe-locomotion/blob/215b9f9/src/movement/smooth-locomotion.component.ts#L43)
+[`src/movement/smooth-locomotion.component.ts:43`](https://github.com/mrxz/aframe-locomotion/blob/15e65c2/src/movement/smooth-locomotion.component.ts#L43)

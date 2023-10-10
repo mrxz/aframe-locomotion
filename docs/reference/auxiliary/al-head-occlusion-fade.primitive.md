@@ -2,9 +2,9 @@
 Primitive that fades the view in/out when the head is placed inside an wall or object.
 
 ## Attributes
-| Attribute | Maps to | Description | Type |
-|-----------|---------|-------------|------|
-| objects | head-occlusion.objects | Selector for all the objects to check head occlusion for | `selectorAll` |
+| Attribute | Maps to | Description | Type | Default Value |
+|-----------|---------|-------------|------|---------------|
+| objects | head-occlusion.objects | Selector for all the objects to check head occlusion for | `selectorAll` |  |
 
 
 
@@ -26,4 +26,4 @@ the primitive being used.
 
 
 ## Source
-[`src/auxiliary/fade.primitive.ts:74`](https://github.com/mrxz/aframe-locomotion/blob/215b9f9/src/auxiliary/fade.primitive.ts#L74)
+[`src/auxiliary/fade.primitive.ts:74`](https://github.com/mrxz/aframe-locomotion/blob/15e65c2/src/auxiliary/fade.primitive.ts#L74)

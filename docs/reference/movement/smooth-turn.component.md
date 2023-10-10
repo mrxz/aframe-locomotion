@@ -35,4 +35,4 @@ commenly one of the hands. Below is an example using a camera rig:
 
 
 ## Source
-[`src/movement/smooth-turn.component.ts:30`](https://github.com/mrxz/aframe-locomotion/blob/215b9f9/src/movement/smooth-turn.component.ts#L30)
+[`src/movement/smooth-turn.component.ts:30`](https://github.com/mrxz/aframe-locomotion/blob/15e65c2/src/movement/smooth-turn.component.ts#L30)

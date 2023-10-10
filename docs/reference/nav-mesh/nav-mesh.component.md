@@ -22,4 +22,4 @@ The `nav-mesh` component doesn't handle this for you, so make sure to manually a
 
 
 ## Source
-[`src/nav-mesh/nav-mesh.component.ts:18`](https://github.com/mrxz/aframe-locomotion/blob/215b9f9/src/nav-mesh/nav-mesh.component.ts#L18)
+[`src/nav-mesh/nav-mesh.component.ts:18`](https://github.com/mrxz/aframe-locomotion/blob/15e65c2/src/nav-mesh/nav-mesh.component.ts#L18)

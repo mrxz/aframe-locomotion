@@ -42,4 +42,4 @@ see [`al-snap-turn-fade`](../auxiliary/al-snap-turn-fade.primitive.md)
 
 
 ## Source
-[`src/movement/snap-turn.component.ts:43`](https://github.com/mrxz/aframe-locomotion/blob/215b9f9/src/movement/snap-turn.component.ts#L43)
+[`src/movement/snap-turn.component.ts:43`](https://github.com/mrxz/aframe-locomotion/blob/15e65c2/src/movement/snap-turn.component.ts#L43)
