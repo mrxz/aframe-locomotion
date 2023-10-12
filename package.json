@@ -38,7 +38,7 @@
     "@types/three": "0.147.1",
     "aframe-types": "0.8.20",
     "aframe-typescript": "0.8.2",
-    "aframe-typescript-docs-generator": "0.8.14",
+    "aframe-typescript-docs-generator": "0.8.15",
     "concurrently": "^7.1.0",
     "handlebars": "^4.7.7",
     "rimraf": "^5.0.1",

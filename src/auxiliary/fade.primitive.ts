@@ -2,7 +2,7 @@ import * as AFRAME from "aframe";
 
 const FadeShader = AFRAME.registerShader('fade', {
     schema: {
-        'color': { type: "vec3", is: 'uniform' },
+        'color': { type: "color", is: 'uniform' },
         'intensity': { type: "number", default: 0.0, max: 1.0, min: 0.0, is: 'uniform' }
     },
     vertexShader:
