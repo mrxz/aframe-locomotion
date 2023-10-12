@@ -21,7 +21,7 @@ to achieve smooth turning.
 
 ## Example
 The `smooth-turn` component needs to be applied to an entity that will emit the `axismove` event,
-commenly one of the hands. Below is an example using a camera rig:
+commonly one of the hands. Below is an example using a camera rig:
 ```HTML
 <a-entity id="rig">
     <a-entity id="camera" camera position="0 1.6 0" wasd-controls look-controls></a-entity>
@@ -35,4 +35,4 @@ commenly one of the hands. Below is an example using a camera rig:
 
 
 ## Source
-[`src/movement/smooth-turn.component.ts:30`](https://github.com/mrxz/aframe-locomotion/blob/15e65c2/src/movement/smooth-turn.component.ts#L30)
+[`src/movement/smooth-turn.component.ts:30`](https://github.com/mrxz/aframe-locomotion/blob/2a47dd0/src/movement/smooth-turn.component.ts#L30)

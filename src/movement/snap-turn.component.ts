@@ -24,7 +24,7 @@ type State = typeof NONE | typeof LEFT | typeof RIGHT | typeof DONE | typeof PRE
  *
  * @example
  * The `snap-turn` component needs to be applied to an entity that will emit the `axismove` event,
- * commenly one of the hands. Below is an example using a camera rig:
+ * commonly one of the hands. Below is an example using a camera rig:
  * ```HTML
  * <a-entity id="rig">
  *     <a-entity id="camera" camera position="0 1.6 0" wasd-controls look-controls></a-entity>
@@ -40,7 +40,7 @@ type State = typeof NONE | typeof LEFT | typeof RIGHT | typeof DONE | typeof PRE
  * after the actual snap rotation. This can be used to make a quick fade transition for each snap turn,
  * see {@link AlSnapTurnFadePrimitive}
  */
-export const SnapTurnComponent = AFRAME.registerComponent('snap-turn', strict<{
+const SnapTurnComponent = AFRAME.registerComponent('snap-turn', strict<{
     /**
      * The internal State of the snap turning process.
      */
@@ -139,3 +139,9 @@ export const SnapTurnComponent = AFRAME.registerComponent('snap-turn', strict<{
         this.el.removeEventListener('axismove', this.axisMoveListener);
     }
 }));
+
+declare module "aframe" {
+    export interface Components {
+        "snap-turn": InstanceType<typeof SnapTurnComponent>,
+    }
+}

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+    <script src="/js/aframe-locomotion.umd.min.js"></script>
+</head>
+<body>
+    <a-scene background="color: gray">
+        <!-- Simple scene -->
+        <a-box scale="20 20 20" position="0 -10 0" material="src: url(./grid.png); repeat: 20 20"></a-box>
+        <a-sphere color="red" radius="0.2" scale="1 0.2 1"></a-sphere>
+
+        <!-- Camera rig -->
+        <a-entity id="rig">
+            <a-camera id="camera"></a-camera>
+
+            <!-- Hands -->
+            <a-entity hand-controls="hand: left" smooth-locomotion="target: #rig; reference: #camera"></a-entity>
+            <a-entity hand-controls="hand: right" snap-turn="target: #rig; reference: #camera"></a-entity>
+        </a-entity>
+    </a-scene>
+</body>
+</html>

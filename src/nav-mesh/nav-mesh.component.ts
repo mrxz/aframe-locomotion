@@ -15,7 +15,7 @@ import * as AFRAME from "aframe";
  * The `nav-mesh` component doesn't handle this for you, so make sure to manually add
  * `material="visible: false"` or hide the mesh in some other way.
  */
-export const NavMeshComponent = AFRAME.registerComponent('nav-mesh', {
+const NavMeshComponent = AFRAME.registerComponent('nav-mesh', {
     schema: {},
     init: function() {
         this.el.addEventListener('model-loaded', (_) => {
@@ -28,3 +28,9 @@ export const NavMeshComponent = AFRAME.registerComponent('nav-mesh', {
         this.system.unregisterNavMesh(this.el);
     }
 });
+
+declare module "aframe" {
+    export interface Components {
+        "nav-mesh": InstanceType<typeof NavMeshComponent>,
+    }
+}

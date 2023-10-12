@@ -24,7 +24,7 @@ camera rig to move around the world using either head orientation or controller 
 
 ## Example
 The `smooth-locomotion` component needs to be applied to an entity that will emit the `axismove` event,
-commenly one of the hands. Below is an example using a camera rig to enable smooth locomotion using the
+commonly one of the hands. Below is an example using a camera rig to enable smooth locomotion using the
 thumbstick on the left controller and using head orientation:
 ```HTML
 <a-entity id="rig">
@@ -49,4 +49,4 @@ To use controller orientation instead, change the reference to the controller, a
 
 
 ## Source
-[`src/movement/smooth-locomotion.component.ts:43`](https://github.com/mrxz/aframe-locomotion/blob/15e65c2/src/movement/smooth-locomotion.component.ts#L43)
+[`src/movement/smooth-locomotion.component.ts:43`](https://github.com/mrxz/aframe-locomotion/blob/2a47dd0/src/movement/smooth-locomotion.component.ts#L43)

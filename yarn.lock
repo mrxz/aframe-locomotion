@@ -520,7 +520,7 @@ __metadata:
     "@types/three": 0.147.1
     aframe-types: 0.8.20
     aframe-typescript: 0.8.2
-    aframe-typescript-docs-generator: 0.8.13
+    aframe-typescript-docs-generator: 0.8.14
     concurrently: ^7.1.0
     handlebars: ^4.7.7
     rimraf: ^5.0.1
@@ -543,16 +543,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"aframe-typescript-docs-generator@npm:0.8.13":
-  version: 0.8.13
-  resolution: "aframe-typescript-docs-generator@npm:0.8.13"
+"aframe-typescript-docs-generator@npm:0.8.14":
+  version: 0.8.14
+  resolution: "aframe-typescript-docs-generator@npm:0.8.14"
   dependencies:
     handlebars: ^4.7.7
     meow: ^12.0.1
     typedoc: ^0.24.8
   bin:
     aframe-typescript-docs-generator: generate-docs.mjs
-  checksum: c7495d3865f0c13543000eb04aedd19393ae652c03575a32cf3f5e5bfc7b66b43f932f4f7cf7cbf9dee556b66410b401ce298f55fa42978285e42fbf835fe5b4
+  checksum: 4563353b2f271d427df7b031e73f82b3e020b23f8208c629c405b60a80ddbc3a4813255d5137ddbfadd0da3e0b01a9652f95b8b71905fdcc8fad14be6bed8906
   languageName: node
   linkType: hard
 

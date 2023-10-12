@@ -17,7 +17,7 @@ const VELOCITY_COMPONENTS: Array<keyof Components> = ['gravity'];
  *
  * @example
  * The `smooth-locomotion` component needs to be applied to an entity that will emit the `axismove` event,
- * commenly one of the hands. Below is an example using a camera rig to enable smooth locomotion using the
+ * commonly one of the hands. Below is an example using a camera rig to enable smooth locomotion using the
  * thumbstick on the left controller and using head orientation:
  * ```HTML
  * <a-entity id="rig">
@@ -40,7 +40,7 @@ const VELOCITY_COMPONENTS: Array<keyof Components> = ['gravity'];
  * </a-entity>
  * ```
  */
-export const SmoothLocomotionComponent = AFRAME.registerComponent('smooth-locomotion', strict<{
+const SmoothLocomotionComponent = AFRAME.registerComponent('smooth-locomotion', strict<{
     inputDirection: { x: number, y: number },
     axisMoveListener: ListenerFor<'axismove'>,
 }>().override<'tick'>().component({
@@ -188,3 +188,9 @@ export const SmoothLocomotionComponent = AFRAME.registerComponent('smooth-locomo
         this.el.removeEventListener('axismove', this.axisMoveListener);
     }
 }));
+
+declare module "aframe" {
+    export interface Components {
+        "smooth-locomotion": InstanceType<typeof SmoothLocomotionComponent>,
+    }
+}

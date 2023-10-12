@@ -24,7 +24,7 @@ the reference is a descendant of the target. This can be used on the camera rig 
 
 ## Example
 The `snap-turn` component needs to be applied to an entity that will emit the `axismove` event,
-commenly one of the hands. Below is an example using a camera rig:
+commonly one of the hands. Below is an example using a camera rig:
 ```HTML
 <a-entity id="rig">
     <a-entity id="camera" camera position="0 1.6 0" wasd-controls look-controls></a-entity>
@@ -42,4 +42,4 @@ see [`al-snap-turn-fade`](../auxiliary/al-snap-turn-fade.primitive.md)
 
 
 ## Source
-[`src/movement/snap-turn.component.ts:43`](https://github.com/mrxz/aframe-locomotion/blob/15e65c2/src/movement/snap-turn.component.ts#L43)
+[`src/movement/snap-turn.component.ts:43`](https://github.com/mrxz/aframe-locomotion/blob/2a47dd0/src/movement/snap-turn.component.ts#L43)

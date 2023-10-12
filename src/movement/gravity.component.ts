@@ -23,7 +23,7 @@ import { EntityEvents, THREE } from "aframe";
  * </a-entity>
  * ```
  */
-export const GravityComponent = AFRAME.registerComponent('gravity', {
+const GravityComponent = AFRAME.registerComponent('gravity', {
     schema: {
         /** The gravitational acceleration in m/s^2 */
         strength: { default: 9.81 }
@@ -51,3 +51,9 @@ export const GravityComponent = AFRAME.registerComponent('gravity', {
         this.el.removeEventListener('motion', this.motionEventHandler);
     }
 });
+
+declare module "aframe" {
+    export interface Components {
+        "gravity": InstanceType<typeof GravityComponent>,
+    }
+}

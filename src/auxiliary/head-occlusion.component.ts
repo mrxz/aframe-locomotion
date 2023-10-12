@@ -3,7 +3,7 @@ import { assertComponent, strict } from 'aframe-typescript';
 import { WebXRCamera } from 'three';
 
 /** @internal */
-export const HeadOcclusionComponent = AFRAME.registerComponent('head-occlusion', strict().override<'tick'>().component({
+const HeadOcclusionComponent = AFRAME.registerComponent('head-occlusion', strict().override<'tick'>().component({
     schema: {
         objects:   { type: 'selectorAll' },
         property:  { type: 'string' },
@@ -55,3 +55,9 @@ export const HeadOcclusionComponent = AFRAME.registerComponent('head-occlusion',
         };
     })()
 }));
+
+declare module "aframe" {
+    export interface Components {
+        "head-occlusion": InstanceType<typeof HeadOcclusionComponent>,
+    }
+}

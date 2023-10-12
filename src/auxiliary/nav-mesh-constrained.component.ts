@@ -4,7 +4,7 @@ import { assertComponent, strict } from "aframe-typescript";
 import { CandidateValidator } from "../nav-mesh/strategy/strategy.interface";
 
 /** @internal */
-export const NavMeshConstrainedComponent = AFRAME.registerComponent('nav-mesh-constrained', strict<{
+const NavMeshConstrainedComponent = AFRAME.registerComponent('nav-mesh-constrained', strict<{
     locomotionSystem: Systems['locomotion'],
     navMeshSystem: Systems['nav-mesh']
 }>().component({
@@ -51,3 +51,9 @@ export const NavMeshConstrainedComponent = AFRAME.registerComponent('nav-mesh-co
         this.locomotionSystem.removePostMotionCallback(this);
     }
 }));
+
+declare module "aframe" {
+    export interface Components {
+        "nav-mesh-constrained": InstanceType<typeof NavMeshConstrainedComponent>,
+    }
+}

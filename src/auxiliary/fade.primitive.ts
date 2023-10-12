@@ -1,7 +1,6 @@
 import * as AFRAME from "aframe";
-import { SnapTurnComponent } from "../movement";
 
-export const FadeShader = AFRAME.registerShader('fade', {
+const FadeShader = AFRAME.registerShader('fade', {
     schema: {
         'color': { type: "vec3", is: 'uniform' },
         'intensity': { type: "number", default: 0.0, max: 1.0, min: 0.0, is: 'uniform' }
@@ -39,7 +38,7 @@ export const FadeShader = AFRAME.registerShader('fade', {
  * </a-entity>
  * ```
  */
-export const AlSnapTurnFadePrimitive = AFRAME.registerPrimitive('al-snap-turn-fade', {
+const AlSnapTurnFadePrimitive = AFRAME.registerPrimitive('al-snap-turn-fade', {
     defaultComponents: {
         material: { shader: 'fade', transparent: true, depthTest: false },
         geometry: { primitive: 'plane' },
@@ -71,7 +70,7 @@ export const AlSnapTurnFadePrimitive = AFRAME.registerPrimitive('al-snap-turn-fa
  * > **Note:** The head occlusion detection uses the XR camera, meaning it won't activate when vr-mode isn't
  * > active. If this is something you need/want, please open a new issue on GitHub and indicate your use case.
  */
-export const AlHeadOcclusionFadePrimitive = AFRAME.registerPrimitive('al-head-occlusion-fade', {
+const AlHeadOcclusionFadePrimitive = AFRAME.registerPrimitive('al-head-occlusion-fade', {
     defaultComponents: {
         material: { shader: 'fade', transparent: true, depthTest: false },
         geometry: { primitive: 'plane' },
@@ -82,3 +81,14 @@ export const AlHeadOcclusionFadePrimitive = AFRAME.registerPrimitive('al-head-oc
         objects: 'head-occlusion.objects'
     }
 });
+
+declare module "aframe" {
+    export interface Primitives {
+        "al-snap-turn-fade": typeof AlSnapTurnFadePrimitive,
+        "al-head-occlusion-fade": typeof AlHeadOcclusionFadePrimitive,
+    }
+
+    export interface Shaders {
+        "fade": InstanceType<typeof FadeShader>
+    }
+}

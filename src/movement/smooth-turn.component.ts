@@ -15,7 +15,7 @@ const EPSILON = 0.00001;
  *
  * @example
  * The `smooth-turn` component needs to be applied to an entity that will emit the `axismove` event,
- * commenly one of the hands. Below is an example using a camera rig:
+ * commonly one of the hands. Below is an example using a camera rig:
  * ```HTML
  * <a-entity id="rig">
  *     <a-entity id="camera" camera position="0 1.6 0" wasd-controls look-controls></a-entity>
@@ -27,7 +27,7 @@ const EPSILON = 0.00001;
  * </a-entity>
  * ```
  */
-export const SmoothTurnComponent = AFRAME.registerComponent('smooth-turn', {
+const SmoothTurnComponent = AFRAME.registerComponent('smooth-turn', {
     schema: {
         /** Whether the smooth turn is active or not */
         enabled:             { default: true },
@@ -78,3 +78,9 @@ export const SmoothTurnComponent = AFRAME.registerComponent('smooth-turn', {
         this.el.removeEventListener('axismove', this.axisMoveListener);
     }
 }) satisfies StrictComponent<{input: number, axisMoveListener: ListenerFor<'axismove'> }>;
+
+declare module "aframe" {
+    export interface Components {
+        "smooth-turn": InstanceType<typeof SmoothTurnComponent>,
+    }
+}

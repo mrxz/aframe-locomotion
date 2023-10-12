@@ -1,16 +1,17 @@
 import * as AFRAME from 'aframe';
 import { strict } from 'aframe-typescript';
 
-interface PostMotionCallback {
+export interface PostMotionCallback {
     postMotion(): void
 };
 
 /**
- *
+ * @internal
  */
-export const LocomotionSystem = AFRAME.registerSystem('locomotion', strict<{
+const LocomotionSystem = AFRAME.registerSystem('locomotion', strict<{
     postMotionCallbacks: Array<PostMotionCallback>
 }>().system({
+    schema: {},
     init: function() {
         this.postMotionCallbacks = [];
     },
@@ -28,3 +29,9 @@ export const LocomotionSystem = AFRAME.registerSystem('locomotion', strict<{
         }
     }
 }));
+
+declare module "aframe" {
+    export interface Systems {
+        "locomotion": InstanceType<typeof LocomotionSystem>,
+    }
+}

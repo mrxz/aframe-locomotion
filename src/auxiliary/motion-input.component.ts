@@ -3,7 +3,7 @@ import { ListenerFor } from "aframe";
 import { assertComponent, strict } from "aframe-typescript";
 
 /** @internal */
-export const MotionInputComponent = AFRAME.registerComponent('motion-input', strict<{
+const MotionInputComponent = AFRAME.registerComponent('motion-input', strict<{
     input: number,
     motionEventHandler: ListenerFor<'motion'>,
 }>().override<'tick'>().component({
@@ -55,3 +55,9 @@ export const MotionInputComponent = AFRAME.registerComponent('motion-input', str
         }
     })()
 }));
+
+declare module "aframe" {
+    export interface Components {
+        "motion-input": InstanceType<typeof MotionInputComponent>,
+    }
+}

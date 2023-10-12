@@ -1,4 +1,5 @@
 {
     "$schema": "https://typedoc.org/schema.json",
-    "blockTags": [ "@emits" ]
+    "blockTags": [ "@emits" ],
+    "excludeInternal": true
 }

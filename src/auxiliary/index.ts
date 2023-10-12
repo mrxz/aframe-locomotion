@@ -1,6 +1,6 @@
-export * from './fade.primitive';
-export * from './head-occlusion.component';
-export * from './motion-input.component';
-export * from './nav-mesh-constrained.component';
-export * from './rotation-input.component';
-export * from './vignette.primitive';
+import './fade.primitive';
+import './head-occlusion.component';
+import './motion-input.component';
+import './nav-mesh-constrained.component';
+import './rotation-input.component';
+import './vignette.primitive';

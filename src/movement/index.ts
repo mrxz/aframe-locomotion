@@ -1,5 +1,5 @@
-export * from './gravity.component';
-export * from './locomotion.system';
-export * from './smooth-locomotion.component';
-export * from './smooth-turn.component';
-export * from './snap-turn.component';
+import './gravity.component';
+import './locomotion.system';
+import './smooth-locomotion.component';
+import './smooth-turn.component';
+import './snap-turn.component';

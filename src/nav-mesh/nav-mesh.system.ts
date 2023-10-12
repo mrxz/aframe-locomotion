@@ -3,7 +3,7 @@ import type { Entity, StrictSystem } from "aframe";
 import { NavMeshStrategy } from "./strategy/strategy.interface";
 
 /** @internal */
-export const NavMeshSystem = AFRAME.registerSystem('nav-mesh', {
+const NavMeshSystem = AFRAME.registerSystem('nav-mesh', {
     schema: {},
     active: false,
 
@@ -38,3 +38,10 @@ export const NavMeshSystem = AFRAME.registerSystem('nav-mesh', {
         return this.navMeshStrategy!.approveMovement(oldPosition, newPosition, this.navMeshes, candidateValidator || (() => true));
     }
 }) satisfies StrictSystem<{navMeshEntities: Array<Entity>, navMeshes: Array<THREE.Mesh>, navMeshStrategy?: NavMeshStrategy}>;
+
+
+declare module "aframe" {
+    export interface Systems {
+        "nav-mesh": InstanceType<typeof NavMeshSystem>,
+    }
+}
