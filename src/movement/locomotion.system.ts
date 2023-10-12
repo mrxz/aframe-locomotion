@@ -8,7 +8,7 @@ export interface PostMotionCallback {
 /**
  * @internal
  */
-const LocomotionSystem = AFRAME.registerSystem('locomotion', strict<{
+export const LocomotionSystem = AFRAME.registerSystem('locomotion', strict<{
     postMotionCallbacks: Array<PostMotionCallback>
 }>().system({
     schema: {},

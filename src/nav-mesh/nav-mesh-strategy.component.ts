@@ -25,7 +25,7 @@ const STRATEGIES: {[key: string]: NavMeshStrategy} = {
  * doesn't handle this for you, so make sure to manually add `material="visible: false"` or hide
  * the mesh in some other way.
  */
-const NavMeshStrategyComponent = AFRAME.registerComponent('nav-mesh-strategy', {
+export const NavMeshStrategyComponent = AFRAME.registerComponent('nav-mesh-strategy', {
     schema: {
         /**
          * Either `simple` or `scan`. The `simple` strategy allows to check if movement is valid based on

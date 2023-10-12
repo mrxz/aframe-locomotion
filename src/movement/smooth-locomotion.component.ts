@@ -40,7 +40,7 @@ const VELOCITY_COMPONENTS: Array<keyof Components> = ['gravity'];
  * </a-entity>
  * ```
  */
-const SmoothLocomotionComponent = AFRAME.registerComponent('smooth-locomotion', strict<{
+export const SmoothLocomotionComponent = AFRAME.registerComponent('smooth-locomotion', strict<{
     inputDirection: { x: number, y: number },
     axisMoveListener: ListenerFor<'axismove'>,
 }>().override<'tick'>().component({

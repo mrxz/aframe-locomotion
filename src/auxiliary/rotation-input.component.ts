@@ -3,7 +3,7 @@ import { ListenerFor } from "aframe";
 import { assertComponent, strict } from "aframe-typescript";
 
 /** @internal */
-const RotationInputComponent = AFRAME.registerComponent('rotation-input', strict<{
+export const RotationInputComponent = AFRAME.registerComponent('rotation-input', strict<{
     input: number,
     preRotationEventHandler: ListenerFor<'prerotation'>,
     postRotationEventHandler: ListenerFor<'postrotation'>,

@@ -40,7 +40,7 @@ type State = typeof NONE | typeof LEFT | typeof RIGHT | typeof DONE | typeof PRE
  * after the actual snap rotation. This can be used to make a quick fade transition for each snap turn,
  * see {@link AlSnapTurnFadePrimitive}
  */
-const SnapTurnComponent = AFRAME.registerComponent('snap-turn', strict<{
+export const SnapTurnComponent = AFRAME.registerComponent('snap-turn', strict<{
     /**
      * The internal State of the snap turning process.
      */

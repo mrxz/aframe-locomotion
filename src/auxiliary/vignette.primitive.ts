@@ -1,6 +1,6 @@
 import * as AFRAME from "aframe";
 
-const VignetteShader = AFRAME.registerShader('vignette', {
+export const VignetteShader = AFRAME.registerShader('vignette', {
     schema: {
         'intensity': { type: "number", default: 2, max: 10, min: 0, is: 'uniform' }
     },
@@ -42,7 +42,7 @@ const VignetteShader = AFRAME.registerShader('vignette', {
  * </a-entity>
  * ```
  */
-const AlVignettePrimitive = AFRAME.registerPrimitive('al-vignette', {
+export const AlVignettePrimitive = AFRAME.registerPrimitive('al-vignette', {
     defaultComponents: {
         material: { shader: 'vignette', transparent: true },
         geometry: { primitive: 'plane' },

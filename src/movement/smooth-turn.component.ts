@@ -27,7 +27,7 @@ const EPSILON = 0.00001;
  * </a-entity>
  * ```
  */
-const SmoothTurnComponent = AFRAME.registerComponent('smooth-turn', {
+export const SmoothTurnComponent = AFRAME.registerComponent('smooth-turn', {
     schema: {
         /** Whether the smooth turn is active or not */
         enabled:             { default: true },
