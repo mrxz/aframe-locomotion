@@ -1,4 +1,5 @@
 import * as AFRAME from "aframe";
+import type { SmoothLocomotionComponent } from "../movement/smooth-locomotion.component";
 
 export const VignetteShader = AFRAME.registerShader('vignette', {
     schema: {

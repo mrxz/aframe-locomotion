@@ -1,4 +1,4 @@
-import { DetailEvent } from 'aframe';
+import type { DetailEvent } from 'aframe';
 
 declare module "aframe" {
     export interface EntityEvents {

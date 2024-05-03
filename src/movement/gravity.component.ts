@@ -1,5 +1,7 @@
 import * as AFRAME from "aframe";
-import { EntityEvents, THREE } from "aframe";
+import { THREE } from "aframe";
+import type { EntityEvents } from "aframe";
+import type { SmoothLocomotionComponent } from "../movement/smooth-locomotion.component";
 
 /**
  * This component is a 'velocity' component and can be used to influence
@@ -28,9 +30,14 @@ export const GravityComponent = AFRAME.registerComponent('gravity', {
         /** The gravitational acceleration in m/s^2 */
         strength: { default: 9.81 }
     },
-    inAir: false,
-    velocity: new THREE.Vector3(),
+    __fields: {} as {
+        inAir: boolean;
+        velocity: THREE.Vector3;
+        motionEventHandler: AFRAME.ListenerFor<'motion'>;
+    },
     init: function() {
+        this.inAir = false;
+        this.velocity = new THREE.Vector3();
         this.motionEventHandler = (event: EntityEvents['motion']) => {
             this.inAir = event.detail.inAir;
             if(!this.inAir) {

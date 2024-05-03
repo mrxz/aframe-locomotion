@@ -1,11 +1,17 @@
 import * as AFRAME from 'aframe';
-import type { Entity, StrictSystem } from "aframe";
+import type { Entity, THREE } from "aframe";
 import { NavMeshStrategy } from "./strategy/strategy.interface";
 
 /** @internal */
 export const NavMeshSystem = AFRAME.registerSystem('nav-mesh', {
     schema: {},
-    active: false,
+    active: false as boolean,
+
+    __fields: {} as {
+        navMeshEntities: Array<Entity>;
+        navMeshes: Array<THREE.Mesh>;
+        navMeshStrategy?: NavMeshStrategy;
+    },
 
     init: function() {
         this.navMeshEntities = [];
@@ -37,7 +43,7 @@ export const NavMeshSystem = AFRAME.registerSystem('nav-mesh', {
     approveMovement: function(oldPosition: THREE.Vector3, newPosition: THREE.Vector3, candidateValidator: any) {
         return this.navMeshStrategy!.approveMovement(oldPosition, newPosition, this.navMeshes, candidateValidator || (() => true));
     }
-}) satisfies StrictSystem<{navMeshEntities: Array<Entity>, navMeshes: Array<THREE.Mesh>, navMeshStrategy?: NavMeshStrategy}>;
+});
 
 
 declare module "aframe" {

@@ -1,4 +1,5 @@
 import * as AFRAME from "aframe";
+import type { NavMeshStrategyComponent } from "./nav-mesh-strategy.component";
 
 /**
  * This component marks an object as a nav mesh, which can be used in motion.

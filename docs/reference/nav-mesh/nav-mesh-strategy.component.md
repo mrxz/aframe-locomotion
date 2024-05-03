@@ -24,4 +24,4 @@ the mesh in some other way.
 
 
 ## Source
-[`src/nav-mesh/nav-mesh-strategy.component.ts:28`](https://github.com/mrxz/aframe-locomotion/blob/2a47dd0/src/nav-mesh/nav-mesh-strategy.component.ts#L28)
+[`src/nav-mesh/nav-mesh-strategy.component.ts:29`](https://github.com/mrxz/aframe-locomotion/blob/2c33638c/src/nav-mesh/nav-mesh-strategy.component.ts#L29)

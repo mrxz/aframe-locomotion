@@ -6,15 +6,15 @@ camera rig to move around the world using either head orientation or controller 
 ## Properties
 | Property | Description | Type | Default Value |
 |----------|-------------|------|---------------|
-| backward | Whether or not backward movement should be applied | `boolean` | true |
-| enabled | Whether the smooth locomotion is active or not | `boolean` | true |
-| fallMode | The mode for how falling should be handled in case the reference is moving off an edge. With `snap` the reference will always snap to the ground, instantly dropping down. With `prevent` the reference won't be moved over the edge. With `fall` the reference is moved over the edge, but not forced/snapped to the ground, allowing it to fall down. (Only applies when using the NavMeshSystem) | `string` | fall |
-| forward | Whether or not forward movement should be applied | `boolean` | true |
-| inputMode | The mode for interpreting the input. With the `binary` mode even small inputs will result in maximum speed being applied. The `analog` mode will scale the applied speed between 0 and moveSpeed based on the input magnitude | `string` | binary |
-| moveSpeed | The (max) speed for the target (m/s) | `number` | 1.5 |
-| reference | Selector for the reference to determine world position and rotation | `selector` |  |
-| sideways | Whether or not sideways movement should be applied | `boolean` | true |
+| enabled | Whether the smooth locomotion is active or not | `string` | true |
 | target | Selector for the target of the motion | `selector` |  |
+| reference | Selector for the reference to determine world position and rotation | `selector` |  |
+| moveSpeed | The (max) speed for the target (m/s) | `number` | 1.5 |
+| forward | Whether or not forward movement should be applied | `string` | true |
+| backward | Whether or not backward movement should be applied | `string` | true |
+| sideways | Whether or not sideways movement should be applied | `string` | true |
+| inputMode | The mode for interpreting the input. With the `binary` mode even small inputs will result in maximum speed being applied. The `analog` mode will scale the applied speed between 0 and moveSpeed based on the input magnitude | `string` | binary |
+| fallMode | The mode for how falling should be handled in case the reference is moving off an edge. With `snap` the reference will always snap to the ground, instantly dropping down. With `prevent` the reference won't be moved over the edge. With `fall` the reference is moved over the edge, but not forced/snapped to the ground, allowing it to fall down. (Only applies when using the [`nav-mesh`](../nav-mesh/nav-mesh.system.md)) | `string` | fall |
 
 ## Events
 | Event Name | Description  |
@@ -49,4 +49,4 @@ To use controller orientation instead, change the reference to the controller, a
 
 
 ## Source
-[`src/movement/smooth-locomotion.component.ts:43`](https://github.com/mrxz/aframe-locomotion/blob/2a47dd0/src/movement/smooth-locomotion.component.ts#L43)
+[`src/movement/smooth-locomotion.component.ts:55`](https://github.com/mrxz/aframe-locomotion/blob/2c33638c/src/movement/smooth-locomotion.component.ts#L55)

@@ -1,21 +1,11 @@
 import * as AFRAME from "aframe";
+import type { SnapTurnComponent } from '../movement/snap-turn.component';
 
 export const FadeShader = AFRAME.registerShader('fade', {
     schema: {
         'color': { type: "color", is: 'uniform' },
         'intensity': { type: "number", default: 0.0, max: 1.0, min: 0.0, is: 'uniform' }
     },
-    vertexShader:
-        'void main() {' +
-            'vec3 newPosition = position * 2.0;' +
-            'gl_Position = vec4(newPosition, 1.0);' +
-        '}',
-    fragmentShader:
-        'uniform vec3 color;' +
-        'uniform float intensity;' +
-        'void main() {' +
-            'gl_FragColor = vec4(color, intensity);' +
-        '}',
 });
 
 /**

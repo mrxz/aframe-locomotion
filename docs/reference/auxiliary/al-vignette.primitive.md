@@ -4,8 +4,8 @@ Primitive that shows a vignette when moving.
 ## Attributes
 | Attribute | Maps to | Description | Type | Default Value |
 |-----------|---------|-------------|------|---------------|
-| intensity | motion-input.maxOutput |  | `number` | 2 |
 | motion-source | motion-input.source | Selector for the entity that is the target of a moving component (like [`smooth-locomotion`](../movement/smooth-locomotion.component.md)). | `selector` |  |
+| intensity | motion-input.maxOutput |  | `number` | 2 |
 
 
 
@@ -28,4 +28,4 @@ the primitive being used with smooth locomotion.
 
 
 ## Source
-[`src/auxiliary/vignette.primitive.ts:45`](https://github.com/mrxz/aframe-locomotion/blob/2a47dd0/src/auxiliary/vignette.primitive.ts#L45)
+[`src/auxiliary/vignette.primitive.ts:46`](https://github.com/mrxz/aframe-locomotion/blob/2c33638c/src/auxiliary/vignette.primitive.ts#L46)

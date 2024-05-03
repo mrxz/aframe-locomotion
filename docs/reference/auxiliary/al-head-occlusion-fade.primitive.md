@@ -26,4 +26,4 @@ the primitive being used.
 
 
 ## Source
-[`src/auxiliary/fade.primitive.ts:73`](https://github.com/mrxz/aframe-locomotion/blob/2a47dd0/src/auxiliary/fade.primitive.ts#L73)
+[`src/auxiliary/fade.primitive.ts:63`](https://github.com/mrxz/aframe-locomotion/blob/2c33638c/src/auxiliary/fade.primitive.ts#L63)

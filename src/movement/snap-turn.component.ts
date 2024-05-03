@@ -1,7 +1,7 @@
 import * as AFRAME from 'aframe';
 import { ListenerFor } from 'aframe';
 import { rotateAroundWorldUp } from './turn';
-import { strict } from 'aframe-typescript';
+import type { AlSnapTurnFadePrimitive } from "../auxiliary/fade.primitive";
 
 const NONE = 0;
 const LEFT = 1;
@@ -40,16 +40,7 @@ type State = typeof NONE | typeof LEFT | typeof RIGHT | typeof DONE | typeof PRE
  * after the actual snap rotation. This can be used to make a quick fade transition for each snap turn,
  * see {@link AlSnapTurnFadePrimitive}
  */
-export const SnapTurnComponent = AFRAME.registerComponent('snap-turn', strict<{
-    /**
-     * The internal State of the snap turning process.
-     */
-    state: State,
-    action: State,
-    timer: number,
-    nextAction: State,
-    axisMoveListener: ListenerFor<'axismove'>
-}>().component({
+export const SnapTurnComponent = AFRAME.registerComponent('snap-turn', {
     schema: {
         /** Whether or not the snapturning is enabled */
         enabled:             { default: true },
@@ -65,6 +56,16 @@ export const SnapTurnComponent = AFRAME.registerComponent('snap-turn', strict<{
         deactivateThreshold: { default: 0.8 },
         /** Optional delay applied before and after the actual snap rotation takes place */
         delay:               { default: 0, min: 0 }
+    },
+    __fields: {} as {
+        /**
+         * The internal State of the snap turning process.
+         */
+        state: State,
+        action: State,
+        timer: number,
+        nextAction: State,
+        axisMoveListener: ListenerFor<'axismove'>
     },
     init: function() {
         this.state = NONE;
@@ -138,7 +139,7 @@ export const SnapTurnComponent = AFRAME.registerComponent('snap-turn', strict<{
     remove: function() {
         this.el.removeEventListener('axismove', this.axisMoveListener);
     }
-}));
+});
 
 declare module "aframe" {
     export interface Components {

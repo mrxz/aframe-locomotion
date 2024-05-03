@@ -1,3 +1,5 @@
+import type { THREE } from 'aframe';
+
 type StrategyResult = {
     result: false,
     position: THREE.Vector3,

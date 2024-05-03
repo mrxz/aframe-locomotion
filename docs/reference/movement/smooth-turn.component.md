@@ -7,16 +7,16 @@ to achieve smooth turning.
 ## Properties
 | Property | Description | Type | Default Value |
 |----------|-------------|------|---------------|
-| enabled | Whether the smooth turn is active or not | `boolean` | true |
-| inputMode | The mode for interpreting the input. With the `binary` mode even small inputs will result in maximum speed being applied. The `analog` mode will scale the applied speed between 0 and `turnSpeed` based on the input magnitude | `string` | binary |
-| reference | Selector for the reference to 'effectively' rotate | `selector` |  |
+| enabled | Whether the smooth turn is active or not | `string` | true |
 | target | Selector for the target to apply rotation and translation to | `selector` |  |
+| reference | Selector for the reference to 'effectively' rotate | `selector` |  |
 | turnSpeed | The (max) rotation speed (degrees/s) | `number` | 20 |
+| inputMode | The mode for interpreting the input. With the `binary` mode even small inputs will result in maximum speed being applied. The `analog` mode will scale the applied speed between 0 and `turnSpeed` based on the input magnitude | `string` | binary |
 
 ## Events
 | Event Name | Description  |
 |------------|--------------|
-| rotation | Target was rotated through this component. No movement is also signalled through      the `motion` event |
+| rotation | Target was rotated through this component. No movement is also signalled through the `motion` event |
 
 
 ## Example
@@ -35,4 +35,4 @@ commonly one of the hands. Below is an example using a camera rig:
 
 
 ## Source
-[`src/movement/smooth-turn.component.ts:30`](https://github.com/mrxz/aframe-locomotion/blob/2a47dd0/src/movement/smooth-turn.component.ts#L30)
+[`src/movement/smooth-turn.component.ts:30`](https://github.com/mrxz/aframe-locomotion/blob/2c33638c/src/movement/smooth-turn.component.ts#L30)

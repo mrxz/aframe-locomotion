@@ -2,6 +2,7 @@ import * as AFRAME from 'aframe';
 import { simpleNavMeshStrategy } from "./strategy/simple-strategy";
 import { scanNavMeshStrategy } from "./strategy/scan-strategy";
 import { NavMeshStrategy } from "./strategy/strategy.interface";
+import type { NavMeshComponent } from "./nav-mesh.component";
 
 const STRATEGIES: {[key: string]: NavMeshStrategy} = {
     'simple': simpleNavMeshStrategy,
@@ -33,6 +34,10 @@ export const NavMeshStrategyComponent = AFRAME.registerComponent('nav-mesh-strat
          * back to alternatives that are slightly to the side of the movement. This allows sliding across walls.
          */
         strategy: { type: 'string', default: 'scan' }
+    },
+    __fields: {} as {
+        navMeshSystem: AFRAME.Systems['nav-mesh'];
+        updateStrategy: () => void;
     },
     init: function() {
         this.navMeshSystem = this.el.sceneEl.systems['nav-mesh'];

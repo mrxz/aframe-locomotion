@@ -1,13 +1,8 @@
 import * as AFRAME from "aframe";
 import { ListenerFor } from "aframe";
-import { assertComponent, strict } from "aframe-typescript";
 
 /** @internal */
-export const RotationInputComponent = AFRAME.registerComponent('rotation-input', strict<{
-    input: number,
-    preRotationEventHandler: ListenerFor<'prerotation'>,
-    postRotationEventHandler: ListenerFor<'postrotation'>,
-}>().override<'tick'>().component({
+export const RotationInputComponent = AFRAME.registerComponent('rotation-input', {
     schema: {
         source:     { type: 'selector' },
         property:   { type: 'string' },
@@ -15,6 +10,13 @@ export const RotationInputComponent = AFRAME.registerComponent('rotation-input',
         maxOutput:  { default: 1.0 },
         ease:       { default: 0.0, min: 0.0, max: 1.0 },
         inputMode:  { default: 'analog' }
+    },
+    __fields: {} as {
+        input: number;
+        preRotationEventHandler: ListenerFor<'prerotation'>;
+        postRotationEventHandler: ListenerFor<'postrotation'>;
+
+        lastOutput: number;
     },
     init: function() {
         this.input = 0;
@@ -26,6 +28,8 @@ export const RotationInputComponent = AFRAME.registerComponent('rotation-input',
         };
         this.data.source?.addEventListener('prerotation', this.preRotationEventHandler);
         this.data.source?.addEventListener('postrotation', this.postRotationEventHandler);
+
+        this.lastOutput = 0;
     },
     update: function(oldData) {
         if(oldData.source !== this.data.source) {
@@ -37,31 +41,26 @@ export const RotationInputComponent = AFRAME.registerComponent('rotation-input',
             this.input = 0;
         }
     },
-    tick: (function() {
-        let lastOutput = 0;
-
-        return function(this: any, _t: number, dt: number) {
-            assertComponent<InstanceType<typeof RotationInputComponent>>(this);
-            if(!dt || !this.data.property) {
-                return;
-            }
-
-            // Compute output value
-            let input = this.input;
-            if(this.data.inputMode === 'binary') {
-                input = input > 0 ? 1.0 : 0.0;
-            }
-            const rawOutput = input * (this.data.maxOutput - this.data.minOutput) + this.data.minOutput;
-
-            // Ease the output (FIXME: not frame-rate independent)
-            const output = rawOutput * (1 - this.data.ease) + lastOutput * this.data.ease;
-
-            // Update property
-            AFRAME.utils.entity.setComponentProperty(this.el, this.data.property, output);
-            lastOutput = output;
+    tick: function(_t: number, dt: number) {
+        if(!dt || !this.data.property) {
+            return;
         }
-    })()
-}));
+
+        // Compute output value
+        let input = this.input;
+        if(this.data.inputMode === 'binary') {
+            input = input > 0 ? 1.0 : 0.0;
+        }
+        const rawOutput = input * (this.data.maxOutput - this.data.minOutput) + this.data.minOutput;
+
+        // Ease the output (FIXME: not frame-rate independent)
+        const output = rawOutput * (1 - this.data.ease) + this.lastOutput * this.data.ease;
+
+        // Update property
+        AFRAME.utils.entity.setComponentProperty(this.el, this.data.property, output);
+        this.lastOutput = output;
+    }
+});
 
 declare module "aframe" {
     export interface Components {
