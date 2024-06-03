@@ -22,7 +22,7 @@ Blog post describing the implementation: [A-Frame Adventures 01 - Smooth locomot
 # Quick start
 To add `aframe-locomotion` to your A-Frame project, all you have to do is load the aframe-locomotion javascript:
 ```html
-<script src="https://unpkg.com/aframe-locomotion@0.2.0/dist/aframe-locomotion.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aframe-locomotion@0.2.0/dist/aframe-locomotion.umd.min.js"></script>
 ```
 
 This will automatically register the components `smooth-locomotion` and `snap-turn`. These need to be attached to the controllers as part of a camera rig, as follows:
