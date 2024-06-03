@@ -1,4 +1,4 @@
-import { THREE } from "aframe";
+import * as THREE from "three";
 
 export const castRay = (function() {
     const raycaster = new THREE.Raycaster();

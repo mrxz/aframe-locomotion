@@ -12,14 +12,15 @@ export default [
             typescript({ compilerOptions: { declaration: true, declarationDir: 'typings' }}),
             terser(),
         ],
-        external: ['aframe'],
+        external: ['aframe', 'three'],
         output: [
             {
                 name: 'aframe-locomotion',
                 file: pkg.browser,
                 format: 'umd',
                 globals: {
-                    aframe: 'AFRAME'
+                    aframe: 'AFRAME',
+                    three: 'THREE'
                 }
             },
             {
@@ -31,7 +32,7 @@ export default [
     {
         input: './dist/typings/main.d.ts',
         output: [{ file: "dist/aframe-locomotion.d.ts", format: "es" }],
-        external: ['aframe'],
+        external: ['aframe', 'three'],
         plugins: [dts()],
     }
 ]

@@ -536,8 +536,8 @@ __metadata:
     "@rollup/plugin-typescript": "npm:^11.1.1"
     "@types/animejs": "npm:3.1.0"
     "@types/three": "npm:0.164.0"
-    aframe-types: "npm:^0.9.0-dev2"
-    aframe-typescript-docs-generator: "npm:^0.9.0-dev3"
+    aframe-types: "npm:^0.9.5"
+    aframe-typescript-docs-generator: "npm:^0.9.2"
     concurrently: "npm:^7.1.0"
     handlebars: "npm:^4.7.7"
     rimraf: "npm:^5.0.1"
@@ -550,26 +550,26 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"aframe-types@npm:^0.9.0-dev2":
-  version: 0.9.0-dev2
-  resolution: "aframe-types@npm:0.9.0-dev2"
+"aframe-types@npm:^0.9.5":
+  version: 0.9.5
+  resolution: "aframe-types@npm:0.9.5"
   peerDependencies:
     "@types/animejs": 3.1.0
     "@types/three": 0.164.0
-  checksum: 10/1b1b6b790e7e1d8a71a260bb85ab6996f5508ac3fe25db12b937e4901d549f28a7177c9934d830f3151757e5bc79f0d76bbae4775aedc2246e4c6b287432bb05
+  checksum: 10/ad59710b176e86ecc95564e7e193d787a4305437ec10108cf3eadca93224ec19edbfcf72019a1c93dd13b5d65afb0cf98dc62ac20a59f9e70e5659166e17d8b6
   languageName: node
   linkType: hard
 
-"aframe-typescript-docs-generator@npm:^0.9.0-dev3":
-  version: 0.9.0-dev3
-  resolution: "aframe-typescript-docs-generator@npm:0.9.0-dev3"
+"aframe-typescript-docs-generator@npm:^0.9.2":
+  version: 0.9.2
+  resolution: "aframe-typescript-docs-generator@npm:0.9.2"
   dependencies:
     handlebars: "npm:^4.7.7"
     meow: "npm:^12.0.1"
     typescript: "npm:^5.4.5"
   bin:
     aframe-typescript-docs-generator: generate-docs.mjs
-  checksum: 10/66fe6877f896cf3ad4eeae3e34612083616378b46587590718d4ef277f652e5c083b95a26b67cd0c9f860a6ecaa78c134fd3d914543b36d1ff64703281bd61c2
+  checksum: 10/40fcdd9c5f5046674266f726d100a75147baf9beb57258e38f5a171ead0dbf807267d00e8970405ddfa4497f23146af4bf2913c47f696da4c056bdc91e41c2ab
   languageName: node
   linkType: hard
 

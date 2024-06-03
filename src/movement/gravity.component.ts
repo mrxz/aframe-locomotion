@@ -1,5 +1,5 @@
 import * as AFRAME from "aframe";
-import { THREE } from "aframe";
+import * as THREE from "three";
 import type { EntityEvents } from "aframe";
 import type { SmoothLocomotionComponent } from "../movement/smooth-locomotion.component";
 

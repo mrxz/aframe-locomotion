@@ -9,14 +9,15 @@ export default [
             nodeResolve({ resolveOnly: ['aframe-typescript'] }),
             typescript(),
         ],
-        external: ['aframe'],
+        external: ['aframe', 'three'],
         output: [
             {
                 name: 'aframe-locomotion',
                 file: pkg.browser,
                 format: 'umd',
                 globals: {
-                    aframe: 'AFRAME'
+                    aframe: 'AFRAME',
+                    three: 'THREE'
                 }
             }
         ],

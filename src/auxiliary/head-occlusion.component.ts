@@ -1,4 +1,4 @@
-import { THREE } from 'aframe';
+import * as THREE from 'three';
 
 const raycaster = new THREE.Raycaster();
 const origin = new THREE.Vector3();

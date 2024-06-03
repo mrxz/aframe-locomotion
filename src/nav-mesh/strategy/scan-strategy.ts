@@ -1,6 +1,6 @@
 import { NavMeshStrategy } from "./strategy.interface";
 import { castRay } from "./utils";
-import { THREE } from "aframe";
+import * as THREE from "three";
 
 const STEP_SIZE = 0.5;
 // Based on https://github.com/AdaRoseCannon/aframe-xr-boilerplate/blob/glitch/simple-navmesh-constraint.js

@@ -1,4 +1,4 @@
-import { THREE } from "aframe";
+import * as THREE from "three";
 
 export const rotateAroundWorldUp = (function() {
     const v3 = new THREE.Vector3();

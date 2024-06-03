@@ -1,5 +1,5 @@
 import * as AFRAME from "aframe";
-import { THREE } from "aframe";
+import * as THREE from "three";
 import type { Systems } from "aframe";
 import { CandidateValidator } from "../nav-mesh/strategy/strategy.interface";
 
