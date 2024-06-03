@@ -44,7 +44,7 @@ This will automatically register the components `smooth-locomotion` and `snap-tu
 </a-entity>
 ```
 
-Both `smooth-locomotion` and `snap-turn` have more properties that can be used to tweak the behaviour. Check the <a href="https://aframe-locomotion.fern.solutions/docs">Documentation</a> to learn more or explore the <a href="https://aframe-locomotion.fern.solutions/examples">examples</a>.
+Both `smooth-locomotion` and `snap-turn` have more properties that can be used to tweak the behaviour. Check the <a href="https://aframe-locomotion.fern.solutions">Documentation</a> to learn more or explore the <a href="https://aframe-locomotion.fern.solutions/examples">examples</a>.
 
 # Features
 * Smooth locomotion
